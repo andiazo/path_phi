@@ -1,86 +1,92 @@
-if __name__=='__main__':
-    print('You should delete this file')
-    esto no es buen codigo python
-    import hola
-    import numpy
-    a = 5
-    b = 6
-    import numpy
-import numpy    
-    print('Hola mundo')
-     print('Hola mundo')
-    print('Hola mundo')
-    print('Hola mundo')
-    """Paso en el juego de la vida de Conway."""
-    v = vecindario(b) # Se calcula el vecindario
-    buffer_b = b.copy() # Hacemos una copia de la matriz
-    for i in range(buffer_b.shape[0]):
-        for j in range(buffer_b.shape[1]):
-            if v[i, j] == 3 or (v[i, j] == 2 and buffer_b[i, j]):
-                buffer_b[i, j] = 1
-            else:
-                buffer_b[i, j] = 0
-    
-    """Paso en el juego de la vida de Conway."""
-    v = vecindario(b) # Se calcula el vecindario
-    buffer_b = b.copy() # Hacemos una copia de la matriz
-    for i in range(buffer_b.shape[0]):
-        for j in range(buffer_b.shape[1]):
-            if v[i, j] == 3 or (v[i, j] == 2 and buffer_b[i, j]):
-                buffer_b[i, j] = 1
-            else:
-                buffer_b[i, j] = 0
-    
+# DATA PROVIDED TO US. STRUCTURE CANNOT BE MODIFIED! WELCOME TO THE REAL WORLD PRINCESS
 
-def vecindario(b):
-    """Array de células vivas en el vecindario."""
-    vecindario = (
-        np.roll(np.roll(b, 1, 1), 1, 0) + # Arriba-izquierda
-        np.roll(b, 1, 0) + # Arriba
-        np.roll(np.roll(b, -1, 1), 1, 0) + # Arriba-derecha
-        np.roll(b, -1, 1) + # Derecha
-        np.roll(np.roll(b, -1, 1), -1, 0) + # Abajo-derecha
-        np.roll(b, -1, 0) + # Abajo
-        np.roll(np.roll(b, 1, 1), -1, 0) + # Abajo-izquierda
-        np.roll(b, 1, 1) # Izquierda
-    )
-    return vecindario
+sizes = [
+    {
+        "name": "item_1",
+        "size_in_mL": "100mL",
+        "alternate_identifier": "axc45"
+    },
+    {
+        "name": "item_2",
+        "size_in_mL": "100mL",
+        "alternate_identifier": "axc675"
+    },
+    {
+        "name": "item_2",
+        "size_in_mL": "400mL",
+        "alternate_identifier": "axc66725"
+    },
+    {
+        "name": "item_3",
+        "size_in_mL": "50mL",
+        "alternate_identifier": "axd10025"
+    }
 
-def paso(b):
-    """Paso en el juego de la vida de Conway."""
-    v = vecindario(b) # Se calcula el vecindario
-    buffer_b = b.copy() # Hacemos una copia de la matriz
-    for i in range(buffer_b.shape[0]):
-        for j in range(buffer_b.shape[1]):
-            if v[i, j] == 3 or (v[i, j] == 2 and buffer_b[i, j]):
-                buffer_b[i, j] = 1
-            else:
-                buffer_b[i, j] = 0
-    return buffer_b
+]
 
-def paso(b):
-    """Paso en el juego de la vida de Conway."""
-    v = vecindario(b) # Se calcula el vecindario
-    buffer_b = b.copy() # Hacemos una copia de la matriz
-    for i in range(buffer_b.shape[0]):
-        for j in range(buffer_b.shape[1]):
-            if v[i, j] == 3 or (v[i, j] == 2 and buffer_b[i, j]):
-                buffer_b[i, j] = 1
-            else:
-                buffer_b[i, j] = 0
-    return buffer_b
+prices = [
+    {
+        "price": 10.67,
+        "alternate_identifier": "axc45"
+    },
+    {
+        "price": 15.50,
+        "alternate_identifier": "axc675"
+    },
+    {
+        "price": 20.99,
+        "alternate_identifier": "axc66725"
+    },
+    {
+        "price": 7.99,
+        "alternate_identifier": "axd10025"
+    }
 
-def hola():
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
-    print("hola")
+]
+
+quantities = [
+
+    {
+        "name": "item_1",
+        "quantity": 10
+    },
+    {
+        "name": "item_2",
+        "quantity": 20
+    },
+    {
+        "name": "item_2",
+        "quantity": 40
+    },
+    {
+        "name": "item_3",
+        "quantity": 15
+    }
+
+]
+
+# YOUR CODE PRINTS THE TOTAL PRICE TO BUY ALL ITEMS OF A SPECIFIC SIZE 
+# (Example -  10 item_1 OF SIZE 100mL cost $106.7)
+
+identifier_info = {
+    item['name']: item['alternate_identifier'] for item in sizes}
+
+price_info = {
+    item['alternate_identifier']: item['price'] for item in prices}
+
+
+# LOOP WHICH CALCULATES TOTAL PRICE
+
+for item in quantities:
+    name, quantity = item['name'], item['quantity']
+
+    # fetch alternate_identifier to get the price
+    identifier = identifier_info[name]
+
+    # get price of the item
+    price = price_info[identifier]
+
+    # calculate the total price to buy the entire stock of a specific size of an item
+    total_price = quantity * price
+
+    print ' The total price of %s is %s ' % (name, total_price)
