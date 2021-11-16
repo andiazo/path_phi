@@ -69,3 +69,18 @@ def paso(b):
             else:
                 buffer_b[i, j] = 0
     return buffer_b
+
+def hola():
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
+    print("hola")
