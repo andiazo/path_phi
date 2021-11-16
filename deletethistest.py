@@ -1,9 +1,12 @@
 if __name__=='__main__':
     print('You should delete this file')
     esto no es buen codigo python
+    import hola
+    import numpy
     a = 5
     b = 6
-    
+    import numpy
+import numpy    
     print('Hola mundo')
      print('Hola mundo')
     print('Hola mundo')
