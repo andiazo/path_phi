@@ -1,6 +1,6 @@
 if __name__=='__main__':
     print('You should delete this file')
-
+    esto no es buen codigo python
     a = 5
     b = 6
     
