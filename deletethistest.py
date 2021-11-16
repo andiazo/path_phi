@@ -3,6 +3,8 @@ if __name__=='__main__':
 
     a = 5
     b = 6
-    c = a % b
-    c = b % a
-    c = a % b 
+    
+    print('Hola mundo')
+     print('Hola mundo')
+    print('Hola mundo')
+    print('Hola mundo')
