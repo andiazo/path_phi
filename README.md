@@ -25,3 +25,5 @@ Seguimos los principios de clean architecture.
 
 En la carpeta api se ubica el código para backend.
 En la carpeta ui se ubica el código para frontend.
+
+## Equipo de desarrollo
