@@ -6,7 +6,7 @@ const { DB } = require("../../config/environments");
 const config = DB;
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.passsword, config);
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 fs.readdirSync(__dirname)
     .filter(file => {
@@ -14,7 +14,6 @@ fs.readdirSync(__dirname)
     })
     .forEach(file => {
         const model = sequelize["import"](path.join(__dirname, file));
-        //const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
         db[model.name] = model;
     });
 

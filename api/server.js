@@ -1,6 +1,4 @@
 const express = require("express");
-//const resolve = require("./container");
-//const { resolve } = require("./container");
 
 class Server {
     constructor({ config, router }) {
@@ -8,6 +6,7 @@ class Server {
         this._express = express();
         this._express.use(router);
     }
+
     start() {
         return new Promise((resolve, reject) => {
             const http = this._express.listen(this._config.PORT, () => {
@@ -18,4 +17,5 @@ class Server {
         });
     }
 }
+
 module.exports = Server;
