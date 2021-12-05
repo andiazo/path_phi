@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/caaninome1/path_phi#readme",
     "dependencies": {
+        "automapper-js": "^1.0.15",
         "awilix": "^4.2.1",
         "body-parser": "^1.19.0",
         "compression": "^1.7.4",
@@ -24,7 +25,6 @@
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "pg": "^8.7.1",
-        "sequelize": "^5.2.11",
-        "structure": "^2.0.1"
+        "sequelize": "^5.2.11"
     }
 }
