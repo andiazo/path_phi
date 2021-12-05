@@ -5,4 +5,4 @@ node_modules
 *.txt
 
 # Ignora los archivos relacionados a API keys
-#.env
+.env

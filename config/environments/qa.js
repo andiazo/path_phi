@@ -1,10 +1,10 @@
-module.exports={
+module.exports = {
     PORT: process.env.PORT,
-    DB:{
-        user:"postgres",
-        passsword:"mysecretpassword",
+    DB: {
+        username: "postgres",
+        passsword: "mysecretpassword",
         database: "school_QA",
         host: "localhost",
-        dialect:"postgres"
+        dialect: "postgres"
     }
 };

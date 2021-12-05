@@ -1,12 +1,12 @@
 class UserRepository {
     constructor({ db }) {
-        this.db = db;
+        this._db = db;
     }
     getUsers() {
         return this._db.users.findAll();
     }
     createUser(user) {
-        return this._db.users.create();
+        return this._db.users.create(user);
     }
 }
 
