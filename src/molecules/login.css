@@ -1,0 +1,67 @@
+
+*{
+    font-family: Ubuntu;
+}
+body {
+    background-image: url("../img/LoginBackground.jpeg");
+    background-color: rgb(129, 217, 255);
+    background-size: cover;  
+}
+
+.main-container{
+    position: relative;
+    left: 10vw;
+    top:10vw;
+    height: 30vw;
+    width: 36vw;
+    background-color: white;
+    box-shadow: 0px 4px 9px 3px rgba(0, 0, 0, 0.62);
+}
+.login-container{
+    
+    width: fit-content;
+    height: inherit;
+    position: absolute;
+    left: 10%;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+}
+
+
+.login-container h3{
+    font-style: italic;
+    font-size: 0.8vw;
+    color: rgba(39, 98, 113, 0.65);
+    text-decoration: underline;
+    cursor: pointer;
+    padding:0;
+    margin: 1px;
+}
+.login-container .form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15%;
+}
+
+.container-incolumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 100px;
+    gap:1px;
+}
+
+.vertical-bar{
+    position: absolute;
+    width: 31px;
+    height: 90%;
+    right: 3%;
+    top: 5%;
+    bottom: auto;
+    background: #C19D72;
+    border-radius: 40px;
+}
