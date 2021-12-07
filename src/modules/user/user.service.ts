@@ -6,7 +6,7 @@ import { UserDetails } from './user.details.entity';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import { Role } from '../role/role.entity';
-import { RoleRepository } from '../role/rol.repository';
+import { RoleRepository } from '../role/role.repository';
 import { status } from '../../shared/entity-status.enum';
 
 

@@ -6,7 +6,7 @@ import { RoleType } from '../role/roletype.enum';
 import { User } from '../user/user.entity';
 import { AuthRepository } from './auth.repository';
 import { SigninDto, SignupDto } from './dto';
-import { IJwtPayload } from './dto/jwt-payload.interface';
+import { IJwtPayload } from './jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
