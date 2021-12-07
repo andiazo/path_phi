@@ -6,6 +6,7 @@ body {
     background-color: rgb(129, 217, 255);
     background-size: cover;  
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .home-main-container{
@@ -81,6 +82,12 @@ body {
     bottom: auto;
     background: #C19D72;
     border-radius: 40px;
+}
+.footer{
+    background-color: #3F69FF;
+    width: inherit;
+    text-align: center;
+    height: 80px;
 }
 #nav {
 	width: 100%;

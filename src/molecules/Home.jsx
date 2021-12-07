@@ -40,6 +40,15 @@ const Home = () => {
                     <Text content = 'Como usar PathPhi' fontSize="3vw" color= "#4B7787" fontWeight="bold"/>
                 </div>
                 <img src = {Image}  width = '700px'/> 
+
+                <div className = 'footer'>
+                    <Text content = 'PathPhi' fontSize = '0.7vw' color = 'white'/>
+                    <Text content = 'Todos los derechos reservados' fontSize = '0.7vw' color = 'white'/>
+                    <Text content = 'Diego Bula - Diego Carvajal - Andres Diaz - Nicolas Hoyos - Carlos Niño - Samuel Salgado' fontSize = '0.7vw' color = 'white'/>
+                    <Text content = '2021' fontSize = '0.7vw' color = 'white'/>
+                </div>
+
+
                 </div>
             </div>
         </>
