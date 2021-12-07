@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Login from './molecules/Login'
-import Home from './molecules/Home'
+import Inicio from './organism/Inicio';
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <Inicio />
   </React.StrictMode>,
   document.getElementById('root')
 );

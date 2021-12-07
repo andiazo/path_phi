@@ -5,14 +5,19 @@ import Button from "../atoms/button";
 import Paragraph from "../atoms/paragraph";
 import Navbar from "../atoms/Navbar"
 import Image from "../img/logo-pathphi.png"
-const Home = () => {
-
+const Home = ({handleClick}) => {
+    const reHandleClickregister = () =>{
+        handleClick("register")
+      }
+      const reHandleClickLogin = () =>{
+        handleClick("login")
+      }
     //Puede poner JavaScript *puro* 
       return (
         <>
             <div className="home-main-container">
                 <div className="home-login-container">
-                <Navbar /> 
+                <Navbar HandleClickRegister={reHandleClickregister} HandleClickLogin={reHandleClickLogin}/> 
                 <div className = "home-container-row home-container-row-left" >
                     <Text content = 'Descripción' fontSize="3vw" color= "#5B7783" fontWeight="bold"/>
                     <div className = "home-container-paragraph">

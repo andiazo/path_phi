@@ -21,6 +21,8 @@ const reHandleClickRegister = () =>{
     if(username != "" && password != "" && email != "" && age != "" && acceptTerms){
         setAlertText("")
         setAlertTextClass("")
+        handleClick("login")
+
     }
     else{
       setAlertText("Por favor llenar todos los campos y aceptar los términos y condiciones")

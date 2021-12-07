@@ -1,5 +1,5 @@
 import Image from "../img/logo-pathphi.png"
-const Navbar = () => {
+const Navbar = ({HandleClickRegister, HandleClickLogin}) => {
     const stylenav = {
         width: '100%',
         float: 'right',
@@ -54,8 +54,8 @@ const Navbar = () => {
             </ul>
             <ul id="List" style = {stylenav}>
                 
-                <li style = {listElementStyle}><a style = {autStyle} href="#">Registrarse</a></li>
-                <li style = {listElementStyle}><a style = {autStyle} href={'http://google.com'}>Iniciar Sesion</a></li>
+                <li style = {listElementStyle}><a style = {autStyle} href="#" onClick={HandleClickRegister}>Registrarse</a></li>
+                <li style = {listElementStyle}><a style = {autStyle} href="#" onClick={HandleClickLogin}>Iniciar Sesion</a></li>
             </ul>
         </div>
     );

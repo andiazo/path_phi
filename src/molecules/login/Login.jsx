@@ -18,6 +18,7 @@ const reHandleClickLogin = () =>{
   if(username != "" && password != ""){
     setAlertText("")
     setAlertTextClass("")
+    handleClick("home")
   }
   else{
     setAlertText("Por favor llenar los campos con datos válidos")
