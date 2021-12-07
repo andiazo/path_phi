@@ -1,0 +1,17 @@
+{
+  "type": "postgres",
+  "username": "postgres",
+  "password": "pathphi",
+  "host": "localhost",
+  "port": 5444,
+  "database": "pathphidev",
+  "entities": [
+    "src/**/**/*.entity{.ts,.js}"
+  ],
+  "migrations": [
+    "src/database/migrations/*{.ts,.js}"
+  ],
+  "cli": {
+    "migrationsDir": "src/database/migrations"
+  }
+}
