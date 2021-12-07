@@ -1,5 +1,5 @@
 
-const Text = ({content, fontStyle, fontSize, fontWeight, color, textDecoration, cursor, handle, className}) => {
+const Text = ({content, fontStyle, fontSize, fontWeight, color, textDecoration, cursor, link}) => {
 //Puede poner JavaScript *puro*
     
     const constStyle ={
@@ -12,8 +12,9 @@ const Text = ({content, fontStyle, fontSize, fontWeight, color, textDecoration, 
 
         margin: "0",
     }
+    console.log(constStyle)
     return (
-        <p className = {className} style={constStyle} onClick={handle}>{content}</p>
+        <p style={constStyle} onClick={() => cursor=="pointer"?window.open(`${link? link:""}`, '_blank'):""}>{content}</p>
     );
 };
 export default Text;

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Register from './molecules/register/register'
-import Inicio from './organism/Inicio'
+import Login from './molecules/Login'
+import Home from './molecules/Home'
 ReactDOM.render(
   <React.StrictMode>
-    <Inicio />
+    <Home />
   </React.StrictMode>,
   document.getElementById('root')
 );
