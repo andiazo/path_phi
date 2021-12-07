@@ -1,0 +1,94 @@
+body {
+    background-image: url("../../img/LoginBackground.jpeg");
+    background-color: rgb(129, 217, 255);
+    background-size: cover;  
+}
+.container{
+    height: fit-content;
+    width: fit-content;
+}
+.container--main{
+    position: absolute;
+    left: 10%;
+    top:10%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    gap: 3vw;
+    box-shadow: 0px 4px 9px 3px rgba(0, 0, 0, 0.62);
+}
+.container--register{
+    
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    gap: 2vw;
+    margin: 2vw 7vw 2vw 7vw;
+    align-items: center;
+}
+
+
+.register-container h3{
+    font-style: italic;
+    font-size: 0.8vw;
+    color: rgba(39, 98, 113, 0.65);
+    text-decoration: underline;
+    cursor: pointer;
+    padding:0;
+    margin: 1px;
+}
+.container--register__form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    gap: 1vw;
+}
+
+.container--incolumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 100px;
+    gap:1px;
+}
+.container--inrow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    perspective: 100px;
+    gap:1vw;
+}
+.vertical-bar--register{
+    width: 31px;
+    height: 32vw;
+    margin: 2vw 0 2vw 0;
+
+    position: relative;
+    right: 3%;
+    top: 5%;
+    bottom: auto;
+    background: #41415C;
+    border-radius: 40px;
+}
+
+.alert-text--error{
+    transition: 2s ease-out;
+    color: rgba(206, 80, 80, 0);
+    animation: alert-text--error__animation ease 2s infinite;
+}
+@keyframes alert-text--error__animation{
+    form{
+        color: rgba(206, 80, 80, 0);
+    }
+    50%{
+        color: rgb(206, 80, 80);
+    }
+    80%{
+        color: rgb(206, 80, 80); 
+    }
+    to{
+        color: rgba(206, 80, 80, 0);
+    }
+}

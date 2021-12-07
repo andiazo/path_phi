@@ -1,10 +1,29 @@
 import "./login.css"
-import Text from "../atoms/text"
-import Input from "../atoms/input";
-import Button from "../atoms/button";
-const Login = () => {
+import React from 'react'
+import Text from "../../atoms/text"
+import Input from "../../atoms/input";
+import Button from "../../atoms/button";
+const Login = ({handleClick}) => {
 
 //Puede poner JavaScript *puro* 
+const [alertText, setAlertText] = React.useState("")
+const [alertTextClass, setAlertTextClass] = React.useState("")
+const reHandleClickregister = () =>{
+  handleClick("register")
+}
+const reHandleClickLogin = () =>{
+  const username = document.getElementById("input-username").value
+  const password = document.getElementById("input-password").value
+
+  if(username != "" && password != ""){
+    setAlertText("")
+    setAlertTextClass("")
+  }
+  else{
+    setAlertText("Por favor llenar los campos con datos válidos")
+    setAlertTextClass("alert-text--error")
+  }
+}
   return (
     <>
       <div className="main-container">
@@ -24,9 +43,10 @@ const Login = () => {
             </div>
           </div>
           
-          <Button text="Acceder" color="#5B7783" borderColor="rgba(39, 98, 113, 0.65)"/>
+          {alertText != "" && <Text className= {alertTextClass} content = {alertText} fontSize="0.6vw"  fontWeight="bold"/>}
           <div className="container-incolumn">
-            <Text cursor = "pointer" textDecoration="underline" fontStyle = "italic" content = 'Registrarme' fontSize="0.8vw" color= "rgba(39, 98, 113, 0.65)" fontWeight="bold"/>
+            <Button handle = {reHandleClickLogin} text="Acceder" color="#5B7783" borderColor="rgba(39, 98, 113, 0.65)"/>
+            <Text handle = {reHandleClickregister} cursor = "pointer" textDecoration="underline" fontStyle = "italic" content = 'Registrarme' fontSize="0.8vw" color= "rgba(39, 98, 113, 0.65)" fontWeight="bold"/>
           </div>
           
         </div>

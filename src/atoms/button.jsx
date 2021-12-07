@@ -1,6 +1,5 @@
-const Button = ({text, handleClick, color, borderColor}) => {
+const Button = ({text, handle, color, borderColor}) => {
     //Puede poner JavaScript *puro*
-        
         const constStyle ={
             border: `0.3em solid ${borderColor}`,
             height:"1.6em",
@@ -16,7 +15,7 @@ const Button = ({text, handleClick, color, borderColor}) => {
             fontWeight: "bold",
         }
         return (
-            <div style={constStyle} onClick={handleClick}>{text}</div>
+            <div style={constStyle} onClick={handle}>{text}</div>
         );
     };
     export default Button;

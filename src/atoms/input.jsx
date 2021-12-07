@@ -11,9 +11,15 @@ const Input = ({id, type, width, height, transformStyle, transform, backgroundCo
             padding: padding,
             border: border,
         }
-        console.log(constStyle)
         return (
-            <input style={constStyle} id={id} type={type}/>
+            <>
+            {
+                (type == "number")?
+                <input min = "6" max="100" style={constStyle} id={id} type={type}/>
+                :
+                <input style={constStyle} id={id} type={type}/>
+            }
+            </>
         );
     };
     export default Input;
