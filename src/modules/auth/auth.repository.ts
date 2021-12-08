@@ -1,7 +1,7 @@
 import { User } from '../user/user.entity';
 import { EntityRepository, getConnection, Repository } from 'typeorm';
 import { SignupDto } from './dto';
-import { RoleRepository } from '../role/rol.repository';
+import { RoleRepository } from '../role/role.repository';
 import { Role } from '../role/role.entity';
 import { RoleType } from '../role/roletype.enum';
 import { UserDetails } from '../user/user.details.entity';

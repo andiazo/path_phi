@@ -4,7 +4,7 @@ import { ConfigService } from "../../../config/config.service";
 import { Configuration } from "../../../config/config.keys";
 import { AuthRepository } from "../auth.repository";
 import { InjectRepository } from "@nestjs/typeorm";
-import { IJwtPayload } from "../dto/jwt-payload.interface";
+import { IJwtPayload } from "../jwt-payload.interface";
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 
 @Injectable()
