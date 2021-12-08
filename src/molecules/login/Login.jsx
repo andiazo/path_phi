@@ -3,14 +3,27 @@ import React from 'react'
 import Text from "../../atoms/text"
 import Input from "../../atoms/input";
 import Button from "../../atoms/button";
+import {signIn} from '../../HTTPscripts/authScripts'
 const Login = ({handleClick}) => {
 
 //Puede poner JavaScript *puro* 
 const [alertText, setAlertText] = React.useState("")
 const [alertTextClass, setAlertTextClass] = React.useState("")
+const [isAuthorized, setIsAuthorized] = React.useState(false)
 const reHandleClickregister = () =>{
   handleClick("register")
 }
+
+React.useEffect(() => {
+  if(isAuthorized){
+    handleClick("home")
+  }
+}, [isAuthorized])
+React.useEffect(() => {
+  if(alertText != "") setAlertTextClass("alert-text--error");
+  else setAlertTextClass("")
+}, [alertText])
+
 const reHandleClickLogin = () =>{
   const username = document.getElementById("input-username").value
   const password = document.getElementById("input-password").value
@@ -18,7 +31,12 @@ const reHandleClickLogin = () =>{
   if(username != "" && password != ""){
     setAlertText("")
     setAlertTextClass("")
-    handleClick("home")
+    //handleClick("home")
+    const data = {
+      username: username,
+      password: password
+    }
+    signIn(setIsAuthorized, setAlertText, data)
   }
   else{
     setAlertText("Por favor llenar los campos con datos válidos")

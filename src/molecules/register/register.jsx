@@ -2,7 +2,10 @@ import React from 'react'
 import Text from "../../atoms/text"
 import Input from "../../atoms/input";
 import Button from "../../atoms/button";
+import {signUp} from '../../HTTPscripts/authScripts'
 import './register.css'
+
+
 const Register = ({handleClick}) => {
 
 //Puede poner JavaScript *puro* 
@@ -11,6 +14,17 @@ const reHandleClick = () =>{
 }
 const [alertText, setAlertText] = React.useState("")
 const [alertTextClass, setAlertTextClass] = React.useState("")
+const [isRegistered, setIsRegistered] = React.useState(false)
+
+React.useEffect(() => {
+  if(isRegistered){
+    handleClick("login")
+  }
+}, [isRegistered])
+React.useEffect(() => {
+  if(alertText != "") setAlertTextClass("alert-text--error");
+  else setAlertTextClass("")
+}, [alertText])
 
 const reHandleClickRegister = () =>{
     const username = document.getElementById("register__input-username").value
@@ -21,8 +35,14 @@ const reHandleClickRegister = () =>{
     if(username != "" && password != "" && email != "" && age != "" && acceptTerms){
         setAlertText("")
         setAlertTextClass("")
-        handleClick("login")
-
+        //handleClick("login")
+        const data = {
+          username: username,
+          password: password,
+          email: email
+        }
+        signUp(setIsRegistered, setAlertText, data)
+        
     }
     else{
       setAlertText("Por favor llenar todos los campos y aceptar los términos y condiciones")
