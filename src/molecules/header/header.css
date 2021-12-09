@@ -1,0 +1,38 @@
+.main-header{
+    width: 90%;
+    height: 10%;
+    padding: 0;
+    margin: 5%;
+    justify-content: space-between;
+    
+}
+
+.main-header__title-container{
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.main-header__buttons-container{
+    gap:  1vw;
+    align-items: flex-end;
+}
+
+.main-header__nav-buttons{
+    gap: 3vw;
+    justify-content: space-around;
+}
+
+.main-header__login-register{
+    justify-content: space-between;
+    align-items: center;
+    gap: 1vw;
+    background-color: #F7F7F7;
+    padding: 1vw;
+    border-radius: 22px;
+}
+
+.vertical-line{
+    background-color: #7B7E9C;
+    width: 1px;
+    height: 100%;
+}

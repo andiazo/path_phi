@@ -1,8 +1,8 @@
 *{
     font-family: Ubuntu;
+    box-sizing: border-box;
 }
 body {
-    background-image: url("../img/LoginBackground.jpeg");
     background-color: rgb(129, 217, 255);
     background-size: cover;  
     background-repeat: no-repeat;
@@ -10,113 +10,32 @@ body {
 }
 
 .home-main-container{
-    position: relative;
+    position: absolute;
     left: 10vw;
     top:1vw;
-    width: 82%;
+    width: 80vw;
     height: 100vw;
     background-color: white;
     box-shadow: 0px 4px 9px 3px rgba(0, 0, 0, 0.62);
-    border-radius: 25px;
+    border-radius: 6vw;
 }
-.home-login-container{
+.home-main__oneRow{
     
-    width: 100%;
-    height: inherit;
-    justify-content: space-around;
-    display: flex;
-    flex-direction: column;
-    
+    margin-bottom: 10vw;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 1vw 1vw;
 }
-
-.home-container-row{
-    gap : 70px;
+.home-main__item-container{
     display: flex;
-    width: 100%;
-    flex-direction: row;
-}
-
-.home-container-row-left{
-    margin-left: 20px;
-    justify-content: flex-start;
-}
-.home-container-row-right{
-    margin-right: 20px;
-    justify-content: flex-end;
-}
-.home-container-paragraph{
-    width: 30%;
-}
-.home-login-container h3{
-    font-style: italic;
-    font-size: 0.8vw;
-    color: rgba(39, 98, 113, 0.65);
-    text-decoration: underline;
-    cursor: pointer;
-    padding:0;
-    margin: 1px;
-}
-.home-login-container .form{
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 15%;
+    width: 27%;
+    height: 27%;
 }
-
-.home-container-incolumn{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    perspective: 100px;
-    gap:1px;
-}
-
-.vertical-bar{
-    position: absolute;
-    width: 31px;
-    height: 90%;
-    right: 3%;
-    top: 5%;
-    bottom: auto;
-    background: #C19D72;
-    border-radius: 40px;
-}
-.footer{
-    background-color: #3F69FF;
-    width: inherit;
-    text-align: center;
-    height: 80px;
-}
-#nav {
-	width: 100%;
-	float: left;
-	margin: 0 0 3em 0;
-	padding: 0;
-	list-style: none;
-	background-color: #f2f2f2;
-	border-bottom: 1px solid #ccc; 
-	border-top: 1px solid #ccc; }
-#nav li {
-	float: left; }
-#nav li a {
-	display: block;
-	padding: 8px 15px;
-	text-decoration: none;
-	font-weight: bold;
-	color: #069;
-	border-right: 1px solid #ccc; }
-#nav li a:hover {
-	color: #c00;
-	background-color: #fff; }
-.horizontal-bar{
-    position: absolute;
-    width: 92%;
-    height: 2%;
-    right: auto;
-    top: 5%;
-    bottom: auto;
-    background: grey;
-    border-radius: 40px;
+.home-main__logo-img{
+    width: 100%;
+    height: 100%;
 }

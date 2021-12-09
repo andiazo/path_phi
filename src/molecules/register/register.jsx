@@ -12,6 +12,9 @@ const Register = ({handleClick}) => {
 const reHandleClick = () =>{
     handleClick("login")
 }
+const reHandleClickHome = () =>{
+  handleClick("home")
+}
 const [alertText, setAlertText] = React.useState("")
 const [alertTextClass, setAlertTextClass] = React.useState("")
 const [isRegistered, setIsRegistered] = React.useState(false)
@@ -83,6 +86,7 @@ const reHandleClickRegister = () =>{
           <div className="container--incolumn">
             <Button handle= {reHandleClickRegister} text="Registrarse" color="#41415C" borderColor="#41415C"/>
             <Text  handle = {reHandleClick} cursor = "pointer" textDecoration="underline" fontStyle = "italic" content = 'Iniciar sesión' fontSize="0.8vw" color= "#41415C" fontWeight="bold"/>
+            <Text handle = {reHandleClickHome} cursor = "pointer" textDecoration="underline" fontStyle = "italic" content = 'Inicio' fontSize="0.8vw" color= "#41415C" fontWeight="bold"/>
           </div>
           
         </div>

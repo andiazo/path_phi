@@ -4,18 +4,24 @@ import Text from "../../atoms/text"
 import Input from "../../atoms/input";
 import Button from "../../atoms/button";
 import {signIn} from '../../HTTPscripts/authScripts'
-const Login = ({handleClick}) => {
+const Login = ({handleClick, setUsername}) => {
+
 
 //Puede poner JavaScript *puro* 
+const [formUser, setFormUser] = React.useState("")
 const [alertText, setAlertText] = React.useState("")
 const [alertTextClass, setAlertTextClass] = React.useState("")
 const [isAuthorized, setIsAuthorized] = React.useState(false)
 const reHandleClickregister = () =>{
   handleClick("register")
 }
+const reHandleClickHome = () =>{
+  handleClick("home")
+}
 
 React.useEffect(() => {
   if(isAuthorized){
+    setUsername(formUser)
     handleClick("home")
   }
 }, [isAuthorized])
@@ -25,15 +31,15 @@ React.useEffect(() => {
 }, [alertText])
 
 const reHandleClickLogin = () =>{
-  const username = document.getElementById("input-username").value
+  setFormUser(document.getElementById("input-username").value)
   const password = document.getElementById("input-password").value
 
-  if(username != "" && password != ""){
+  if(formUser != "" && password != ""){
     setAlertText("")
     setAlertTextClass("")
     //handleClick("home")
     const data = {
-      username: username,
+      username: formUser,
       password: password
     }
     signIn(setIsAuthorized, setAlertText, data)
@@ -66,6 +72,7 @@ const reHandleClickLogin = () =>{
           <div className="container-incolumn">
             <Button handle = {reHandleClickLogin} text="Acceder" color="#5B7783" borderColor="rgba(39, 98, 113, 0.65)"/>
             <Text handle = {reHandleClickregister} cursor = "pointer" textDecoration="underline" fontStyle = "italic" content = 'Registrarme' fontSize="0.8vw" color= "rgba(39, 98, 113, 0.65)" fontWeight="bold"/>
+            <Text handle = {reHandleClickHome} cursor = "pointer" textDecoration="underline" fontStyle = "italic" content = 'Inicio' fontSize="0.8vw" color= "rgba(39, 98, 113, 0.65)" fontWeight="bold"/>
           </div>
           
         </div>
