@@ -1,6 +1,7 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, JoinTable, ManyToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { UserDetails } from './user.details.entity';
 import { Role } from '../role/role.entity';
+import { LearningPath } from "../learning-path/learning-path.entity";
 @Entity('users')
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
@@ -22,6 +23,10 @@ export class User extends BaseEntity {
   @ManyToMany(type => Role, role => role.users, { eager: true })
   @JoinTable({ name: 'user_roles' })
   roles: Role[];
+
+  @ManyToMany(type => LearningPath, learningPath => learningPath.users)
+  @JoinTable({ name: 'inscripcion' })
+  learningPaths: LearningPath[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
