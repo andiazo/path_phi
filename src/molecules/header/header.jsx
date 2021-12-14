@@ -3,11 +3,16 @@ import Text from "../../atoms/text"
 import './header.css'
 
 
-const Header = ({handleClickLogin, handleClickRegister, setUsername, username}) => {
+const Header = ({handleClickNavigation, handleClickLogin, handleClickRegister, handleClickPaths, setUsername, username}) => {
 
 //Puede poner JavaScript *puro* 
-const reSetUsername = () =>{
+
+const reSetUsername= () =>{
     setUsername("")
+}
+
+const reHandleClickNavigation = (string) => () =>{
+  handleClickNavigation(string)
 }
   return (
     <>
@@ -18,8 +23,8 @@ const reSetUsername = () =>{
         </div>
         <div className = "main-header__buttons-container container--incolumn">
             <div className = "main-header__nav-buttons container--inrow">
-                <Text content = 'Inicio' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
-                <Text content = 'Rutas' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
+                <Text handle={reHandleClickNavigation("home")} cursor = "pointer" textDecoration="underline" content = 'Inicio' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
+                <Text handle={reHandleClickNavigation("paths")} cursor = "pointer" textDecoration="underline" content = 'Rutas' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
                 <Text content = 'Acerca de' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
             </div>
             <div className = "main-header__login-register container--inrow">

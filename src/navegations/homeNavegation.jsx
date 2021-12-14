@@ -1,8 +1,8 @@
 import React from 'react'
 import Register from '../molecules/register/register'
 import Login from '../molecules/login/Login'
-import Home from '../molecules/Home'
-const Inicio = () => {
+import PaginaPrincipal from '../templates/paginaPrincipal/PaginaPrincipal'
+const HomeNavegation = () => {
 
 //Puede poner JavaScript *puro* 
 const [state, setState] = React.useState("home")
@@ -15,9 +15,9 @@ const handleClick = (string) =>{
     <>
         {state == "login"&&<Login handleClick={handleClick} setUsername={setUsername}/>}
         {state == "register" && <Register handleClick={handleClick}/>}
-        {state == "home" && <Home handleClick={handleClick} username={username} setUsername= {setUsername}/>}
+        {state == "home" && <PaginaPrincipal handleClick={handleClick} username={username} setUsername= {setUsername}/>}
 
     </>
   );
 };
-export default Inicio;
+export default HomeNavegation;

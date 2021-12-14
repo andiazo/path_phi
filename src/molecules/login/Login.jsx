@@ -33,13 +33,13 @@ React.useEffect(() => {
 const reHandleClickLogin = () =>{
   setFormUser(document.getElementById("input-username").value)
   const password = document.getElementById("input-password").value
-
-  if(formUser != "" && password != ""){
+  const username = document.getElementById("input-username").value
+  if(username != "" && password != ""){
     setAlertText("")
     setAlertTextClass("")
     //handleClick("home")
     const data = {
-      username: formUser,
+      username: username,
       password: password
     }
     signIn(setIsAuthorized, setAlertText, data)

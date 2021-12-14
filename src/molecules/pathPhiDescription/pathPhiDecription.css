@@ -1,0 +1,21 @@
+
+.pp-description__oneRow{
+    
+    margin-bottom: 10vw;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1vw 1vw;
+}
+.pp-description__item-container{
+    display: flex;
+    justify-content: center;
+    width: 27%;
+    height: 27%;
+}
+.pp-description__logo-img{
+    width: 100%;
+    height: 100%;
+}

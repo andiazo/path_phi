@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Inicio from './organism/Inicio';
+import HomeNavegation from './navegations/homeNavegation';
 ReactDOM.render(
   <React.StrictMode>
-    <Inicio />
+    <HomeNavegation />
   </React.StrictMode>,
   document.getElementById('root')
 );
