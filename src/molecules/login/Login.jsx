@@ -4,6 +4,7 @@ import Text from "../../atoms/text"
 import Input from "../../atoms/input";
 import Button from "../../atoms/button";
 import {signIn} from '../../HTTPscripts/authScripts'
+import backgroudImgURL from "../../img/LoginBackground.jpeg"
 const Login = ({handleClick, setUsername}) => {
 
 
@@ -12,6 +13,13 @@ const [formUser, setFormUser] = React.useState("")
 const [alertText, setAlertText] = React.useState("")
 const [alertTextClass, setAlertTextClass] = React.useState("")
 const [isAuthorized, setIsAuthorized] = React.useState(false)
+const [firsTime, setFirsTime] = React.useState(true)
+React.useEffect(()=>{
+  if(firsTime){
+    document.getElementsByTagName("body")[0].style = `background-image: url(${backgroudImgURL})`;
+    setFirsTime(false)
+  }
+}, [firsTime])
 const reHandleClickregister = () =>{
   handleClick("register")
 }

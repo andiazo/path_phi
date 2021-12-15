@@ -4,7 +4,7 @@ import Input from "../../atoms/input";
 import Button from "../../atoms/button";
 import {signUp} from '../../HTTPscripts/authScripts'
 import './register.css'
-
+import backgroudImgURL from "../../img/LoginBackground.jpeg"
 
 const Register = ({handleClick}) => {
 
@@ -18,7 +18,13 @@ const reHandleClickHome = () =>{
 const [alertText, setAlertText] = React.useState("")
 const [alertTextClass, setAlertTextClass] = React.useState("")
 const [isRegistered, setIsRegistered] = React.useState(false)
-
+const [firsTime, setFirsTime] = React.useState(true)
+React.useEffect(()=>{
+  if(firsTime){
+    document.getElementsByTagName("body")[0].style = `background-image: url(${backgroudImgURL})`;
+    setFirsTime(false)
+  }
+}, [firsTime])
 React.useEffect(() => {
   if(isRegistered){
     handleClick("login")

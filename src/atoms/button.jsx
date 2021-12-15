@@ -9,7 +9,7 @@ const Button = ({text, handle, color, borderColor}) => {
             justifyContent: "center",
             alignItems: "center",
             borderRadius: "0.7em",
-            padding:"1% 5% 1% 5%",
+            padding:"1em 1em 1em 1em",
             cursor: "pointer",
             color: color,
             fontWeight: "bold",

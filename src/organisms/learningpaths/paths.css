@@ -14,7 +14,7 @@
     gap: 4%;
     margin: auto;
     box-shadow: inset -4px -4px 7px rgba(0, 0, 0, 0.25);
-    border-radius: 46px;
+    border-radius: 10px;
 
     transition: all 1s ease-out;
 }
@@ -35,9 +35,17 @@
     width: fit-content;
     height: fit-content;
     padding: 10px 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 9px;
     cursor: pointer;
+}
+.paths__election-button--normal:hover{
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.4);
+}
+.paths__election-button--normal{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.paths__election-button--clicked{
+    box-shadow: inset -4px -4px 7px rgba(0, 0, 0, 0.25);
 }
 .path__buttons-container{
     margin-bottom: 5%;

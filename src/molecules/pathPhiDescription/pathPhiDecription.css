@@ -1,9 +1,10 @@
 
 .pp-description__oneRow{
     
-    margin-bottom: 10vw;
+    margin-bottom: 5vw;
     margin-left: 6vw;
     margin-right: 6vw;
+    margin-top: 10vw;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
