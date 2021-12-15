@@ -13,7 +13,7 @@ export class ReadLearningPathDTO{
 
     @Expose()
     @IsString()
-    readonly descripcion: string;
+    readonly descripcion_ruta: string;
 
     @Expose()
     @IsNumber()
