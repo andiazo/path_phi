@@ -24,6 +24,11 @@ export class LearningPathController {
         return this._learningPathService.create(learningPath);
     }
 
+    @Post('/inscribir-ruta/:id')
+    enrollLearningPath(@Param() params): Promise<ReadLearningPathDTO>{
+        return this._learningPathService.enroll(userId, learningPathId);
+    }
+
     @Patch(':id')
     updateLearningPath(
         @Param('id', ParseIntPipe) id: number,

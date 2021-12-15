@@ -17,9 +17,8 @@ export class LearningPathService {
     ){}
 
     async get(id_ruta: number): Promise<ReadLearningPathDTO>{
-        if (id_ruta){
+        if (!id_ruta){
             throw new BadRequestException('No se ha enviado id_ruta');
-
         }
         const learningPath: LearningPath = await this._learningPathRepository.findOne(id_ruta, {
             where: {status: 'ACTIVE'},
@@ -59,6 +58,26 @@ export class LearningPathService {
             cantidad_recursos: learningPath.cantidad_recursos, 
         });
         return plainToClass(ReadLearningPathDTO, savedLearningPath);
+    }
+
+    async enroll (userId: number, rutaId: number): Promise<string>{
+        if (!rutaId){
+            throw new BadRequestException('No se ha enviado rutaId');
+        }
+        const learningPath: LearningPath = await this._learningPathRepository.findOne(id_ruta, {
+            where: {status: 'ACTIVE'},
+        });
+        if (!learningPath){
+            throw new NotFoundException('Ruta no encontrada');
+        }
+
+        /*
+        learningPath.save(
+            userId
+        )
+        */
+
+        return "Inscripción exitosa";
     }
 
     async update(
