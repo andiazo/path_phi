@@ -32,13 +32,13 @@ const reHandleClickNavigation = (string) => () =>{
                     username === ""?
                     <>
                         <Text cursor = "pointer" textDecoration="underline" handle ={handleClickLogin} content = 'Entrar' fontSize="1.2vw" color= "#7B7E9C" fontWeight="bold"/>
-                        <div class = "vertical-line"></div>
+                        <div className = "vertical-line"></div>
                         <Text cursor = "pointer" textDecoration="underline" handle ={handleClickRegister} content = 'Registrarse' fontSize="1.2vw" color= "#7B7E9C" fontWeight="bold"/>
                     </>
                     :
                     <>
                         <Text cursor = "pointer" textDecoration="underline"  content = {username} fontSize="1.2vw" color= "#7B7E9C" fontWeight="bold"/>
-                        <div class = "vertical-line"></div>
+                        <div className = "vertical-line"></div>
                         <Text cursor = "pointer" textDecoration="underline" handle ={reSetUsername} content = 'Salir' fontSize="1.2vw" color= "#7B7E9C" fontWeight="bold"/>
                     </>
                 }
