@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { In } from 'typeorm';
 import { UserRepository } from '../user/user.repository';
-import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
+import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO, EnrollLearningPathDTO } from './dtos';
 import { LearningPath } from './learning-path.entity';
 import { LearningPathRepository } from './learning-path.repository';
 
@@ -60,11 +60,11 @@ export class LearningPathService {
         return plainToClass(ReadLearningPathDTO, savedLearningPath);
     }
 
-    async enroll (userId: number, rutaId: number): Promise<string>{
+    async enroll (rutaId: number, userId: Partial<EnrollLearningPathDTO>): Promise<ReadLearningPathDTO>{
         if (!rutaId){
             throw new BadRequestException('No se ha enviado rutaId');
         }
-        const learningPath: LearningPath = await this._learningPathRepository.findOne(id_ruta, {
+        const learningPath: LearningPath = await this._learningPathRepository.findOne(rutaId, {
             where: {status: 'ACTIVE'},
         });
         if (!learningPath){
@@ -77,7 +77,11 @@ export class LearningPathService {
         )
         */
 
-        return "Inscripción exitosa";
+        LearningPath
+
+        const updatedLearningPath = await this._learningPathRepository.update(rutaId, {users: userId});
+
+        return plainToClass(ReadLearningPathDTO, updatedLearningPath);
     }
 
     async update(

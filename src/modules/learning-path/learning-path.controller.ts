@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { DeleteDateColumn } from 'typeorm';
-import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
+import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO, EnrollLearningPathDTO } from './dtos';
 import { LearningPathService } from './learning-path.service';
 
 @Controller('learning-path')
@@ -24,9 +24,12 @@ export class LearningPathController {
         return this._learningPathService.create(learningPath);
     }
 
-    @Post('/inscribir-ruta/:id')
-    enrollLearningPath(@Param() params): Promise<ReadLearningPathDTO>{
-        return this._learningPathService.enroll(userId, learningPathId);
+    @Patch('/inscribir-ruta/:id')
+    enrollLearningPath(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() user_learning: Partial<EnrollLearningPathDTO>,
+    ){
+        return this._learningPathService.enroll(id, user_learning);
     }
 
     @Patch(':id')
