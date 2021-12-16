@@ -7,7 +7,7 @@ import { LearningPathService } from './learning-path.service';
 export class LearningPathController {
     constructor(private readonly _learningPathService: LearningPathService){}
 
-    @Get(':id')
+    @Get('/consultar/:id')
     getLearningPath(@Param('id', ParseIntPipe) id:number): Promise<ReadLearningPathDTO>{
         return this._learningPathService.get(id);
     }

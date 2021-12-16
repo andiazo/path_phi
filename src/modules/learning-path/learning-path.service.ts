@@ -17,7 +17,7 @@ export class LearningPathService {
     ){}
 
     async get(id_ruta: number): Promise<ReadLearningPathDTO>{
-        if (id_ruta){
+        if (!id_ruta){
             throw new BadRequestException('No se ha enviado id_ruta');
 
         }
