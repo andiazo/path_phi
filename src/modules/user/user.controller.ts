@@ -19,6 +19,12 @@ export class UserController {
     return this._userService.get(userId);
   }
 
+  //Learning paths
+  @Get('/rutas/:id_usuario')
+  getRutas(@Param('id_usuario', ParseIntPipe) id_usuario: number){
+    return this._userService.getLearningPaths(id_usuario)
+  }
+
   @UseGuards(AuthGuard())
   @Get()
   getUsers(): Promise<ReadUserDto[]> {

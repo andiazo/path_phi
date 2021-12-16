@@ -4,7 +4,7 @@ import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import { RoleRepository } from '../role/role.repository';
 import { status } from '../../shared/entity-status.enum';
-import { ReadUserDto, UpdateUserDto } from './dto';
+import { ReadUserDto, UpdateUserDto, ReadLearningPathDTO } from './dto';
 import { plainToClass } from 'class-transformer';
 
 
@@ -78,4 +78,31 @@ export class UserService {
     await this._userRepository.save(userExist);
     return true;
   }
+
+  async getLearningPaths(id_usuario: number): Promise<ReadLearningPathDTO[]> {
+    if (!id_usuario){
+      throw new BadRequestException('Se necesita el id del usuario');
+    } 
+
+    const user = await this._userRepository.findOne(id_usuario, {
+      relations: ["learningPaths"]
+    });
+
+    return user.learningPaths.map(learningPath => plainToClass(ReadLearningPathDTO, learningPath));
+  }
+
+  /*async getLearningPathByUser(id_usuario: number): Promise<ReadLearningPathDTO[]>{
+        if (!id_usuario){
+            throw new BadRequestException('Se necesita el id del usuario');
+        } 
+        const learningPaths: LearningPath[] = await this._learningPathRepository.find({
+            where: {status: 'ACTIVE'},
+            relations: ['users'],
+        });
+
+        console.log(learningPaths[0].users)
+
+        return learningPaths.map(learningPath => plainToClass(ReadLearningPathDTO, learningPath));
+    }*/
+
 }

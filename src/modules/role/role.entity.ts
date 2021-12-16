@@ -1,5 +1,5 @@
 import { type } from "os";
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "../user/user.entity";
 
 @Entity('roles')
@@ -14,7 +14,7 @@ export class Role extends BaseEntity {
   description: string;
 
   @ManyToMany(type => User, user => user.roles)
-  @JoinColumn()
+  @JoinTable()
   users: User[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })

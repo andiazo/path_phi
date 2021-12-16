@@ -11,6 +11,7 @@
   "migrations": [
     "src/database/migrations/*{.ts,.js}"
   ],
+  "synchronize": true,
   "cli": {
     "migrationsDir": "src/database/migrations"
   }
