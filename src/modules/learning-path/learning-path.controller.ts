@@ -24,16 +24,26 @@ export class LearningPathController {
         return this._learningPathService.create(learningPath);
     }
 
-    @Patch(':id')
+    @Patch('/actualizar/:id')
     updateLearningPath(
         @Param('id', ParseIntPipe) id: number,
         @Body() learningPath: Partial<UpdateLearningPathDTO>,
 
     ){
+        console.log("holi");
         return this._learningPathService.update(id, learningPath);
     }
 
-    @Delete(':id')
+    @Patch('/inscribir/:id')
+    enrollLearningPath(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() id_user: number,
+
+    ){
+        return this._learningPathService.enroll(id, id_user);
+    }
+
+    @Delete('/eliminar/:id')
     deleteLearningPath(@Param('id', ParseIntPipe) id: number): Promise<void>{
         return this._learningPathService.delete(id);
     }

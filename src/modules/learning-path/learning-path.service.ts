@@ -84,4 +84,21 @@ export class LearningPathService {
         }
         await this._learningPathRepository.update(id_ruta, {status: 'INACTIVE'});
     }
+
+    async enroll(id_ruta:number, id_user:number): Promise<void>{
+        const learningPathExists = await this._learningPathRepository.findOne(id_ruta, {
+            where: {status: 'ACTIVE'},
+        });
+        if (!learningPathExists){
+            throw new NotFoundException('Esa ruta no existe');
+        }
+        const userExists = await this._userRepository.findOne(id_user)
+        if(!userExists){
+            throw new NotFoundException('Este usuario no existe');
+        }
+
+        let users_list = learningPathExists.users
+
+        await this._learningPathRepository.update(id_ruta, {users: users_list});
+    }
 }
