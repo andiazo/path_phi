@@ -1,5 +1,6 @@
 import { join } from "path";
 import { BaseEntity, Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Topic } from "../topic/topic.entity";
 import { User } from "../user/user.entity";
 
 @Entity('ruta')
@@ -29,4 +30,7 @@ export class LearningPath extends BaseEntity{
     @JoinColumn()
     users: User[];
 
+    @ManyToMany(type => Topic, topic => topic.learningPaths )
+  @JoinColumn()
+  topics: Topic[]; 
 }
