@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, IsNumber} from "class-validator";
+import { User } from "src/modules/user/user.entity";
 export class CreateLearningPathDTO{
     @IsNotEmpty()
     @IsString()
@@ -25,5 +26,5 @@ export class CreateLearningPathDTO{
     readonly status: string;
 
     @IsNotEmpty()
-    readonly users: number[];
+    readonly users: User[];
 }

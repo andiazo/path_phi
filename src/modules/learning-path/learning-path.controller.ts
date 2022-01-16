@@ -30,7 +30,6 @@ export class LearningPathController {
         @Body() learningPath: Partial<UpdateLearningPathDTO>,
 
     ){
-        console.log("holi");
         return this._learningPathService.update(id, learningPath);
     }
 

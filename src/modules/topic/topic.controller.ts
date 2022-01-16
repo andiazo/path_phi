@@ -1,4 +1,40 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { CreateTopicDTO, ReadTopicDTO, UpdateTopicDTO } from './dtos';
+import { Topic } from './topic.entity';
+import { TopicService } from './topic.service';
 
 @Controller('topic')
-export class TopicController {}
+export class TopicController {
+  constructor(private readonly _topicService: TopicService){}
+
+  @Get(':id')
+  getTopic(@Param('id', ParseIntPipe) id: number): Promise<ReadTopicDTO>{
+    return this._topicService.get(id);
+  }
+
+  @Get('ruta/:id_ruta')
+  getTopicByLearningPath(
+    @Param('id_ruta', ParseIntPipe) id_ruta: number): Promise<ReadTopicDTO[]>{
+    return this._topicService.getTopicByLearningPath(id_ruta);
+  }
+
+  @Post('/crear-tema')
+  createTopic(@Body() topic: Partial<CreateTopicDTO>): Promise<ReadTopicDTO>{
+    return this._topicService.create(topic);
+  }
+
+  @Patch('/actualizar-tema/:id')
+    updateTopic(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() topic: Partial<UpdateTopicDTO>,
+
+    ){
+        return this._topicService.update(id, topic);
+    }
+
+  @Delete('/eliminar-tema/:id')
+  deleteTopic(@Param('id', ParseIntPipe) id: number): Promise<void>{
+    return this._topicService.delete(id);
+  }
+
+}
