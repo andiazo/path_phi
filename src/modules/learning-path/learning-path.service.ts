@@ -91,7 +91,7 @@ export class LearningPathService {
             dificultad: learningPath.dificultad,
             cantidad_temas: learningPath.cantidad_temas,
             cantidad_recursos: learningPath.cantidad_recursos, 
-            temas: this.indexToTopics(learningPath.topics) 
+           // temas: this.indexToTopics(learningPath.topics) 
         });
         return plainToClass(ReadLearningPathDTO, savedLearningPath);
     }
