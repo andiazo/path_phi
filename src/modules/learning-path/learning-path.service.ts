@@ -2,6 +2,8 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { In } from 'typeorm';
+import { Topic } from '../topic/topic.entity';
+import { TopicRepository } from '../topic/topic.repository';
 import { UserRepository } from '../user/user.repository';
 import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
 import { LearningPath } from './learning-path.entity';
@@ -14,6 +16,8 @@ export class LearningPathService {
         private readonly _learningPathRepository: LearningPathRepository,
         @InjectRepository(UserRepository)
         private readonly _userRepository: UserRepository,
+        @InjectRepository(TopicRepository)
+        private readonly _topicRepository: TopicRepository,
     ){}
 
     async get(id_ruta: number): Promise<ReadLearningPathDTO>{
@@ -33,6 +37,34 @@ export class LearningPathService {
 
     }
 
+    /*async indexToTopics(ids: number[]): Promise<Topic[]>{
+        console.log(typeof ids);
+        console.log(ids);
+        let topics: Topic[];
+        for (let id of ids){
+            if (!id){
+                throw new BadRequestException('No es un indice valido');
+            }
+            const topic: Topic = await this._topicRepository.findOne(id, {
+                where: {status: 'ACTIVE'},
+            }); 
+            if (!topic){
+                throw new NotFoundException('No se encontro ruta');
+            }
+            topics.push(topic);
+
+        }
+        
+        return topics;
+    }*/
+/*
+    function indexesToTopic(indices: number[]): Topic[]{
+        temas: Topic[] = [];
+        
+        return temas;
+
+    } */
+
     async getAll(): Promise<ReadLearningPathDTO[]>{
         const learningPaths: LearningPath[] = await this._learningPathRepository.find({
             where: {status: 'ACTIVE'},
@@ -51,12 +83,15 @@ export class LearningPathService {
     }
 
     async create (learningPath: Partial<CreateLearningPathDTO>): Promise<ReadLearningPathDTO>{
+        console.log(learningPath.topics);
+        console.log(learningPath.cantidad_recursos);
         const savedLearningPath: LearningPath = await this._learningPathRepository.save({
             nombre_ruta: learningPath.nombre_ruta,
             descripcion_ruta: learningPath.descripcion_ruta,
             dificultad: learningPath.dificultad,
             cantidad_temas: learningPath.cantidad_temas,
             cantidad_recursos: learningPath.cantidad_recursos, 
+            temas: this.indexToTopics(learningPath.topics) 
         });
         return plainToClass(ReadLearningPathDTO, savedLearningPath);
     }

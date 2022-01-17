@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, IsNumber} from "class-validator";
+import { Topic } from "src/modules/topic/topic.entity";
 import { User } from "src/modules/user/user.entity";
 export class CreateLearningPathDTO{
     @IsNotEmpty()
@@ -27,4 +28,7 @@ export class CreateLearningPathDTO{
 
     @IsNotEmpty()
     readonly users: User[];
+
+    @IsNotEmpty()
+    readonly topics: number[];
 }
