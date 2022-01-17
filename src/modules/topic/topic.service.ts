@@ -16,7 +16,7 @@ export class TopicService {
     private readonly _learningPathRepository: LearningPathRepository
   ){}
   async get(id_topic: number): Promise<ReadTopicDTO>{
-    if (id_topic){
+    if (!id_topic){
       throw new BadRequestException('Se necesita el ID del tema');
     } 
     const topic = await this._topicRepository.findOne(id_topic);

@@ -7,7 +7,7 @@ import { TopicService } from './topic.service';
 export class TopicController {
   constructor(private readonly _topicService: TopicService){}
 
-  @Get(':id')
+  @Get('/:id')
   getTopic(@Param('id', ParseIntPipe) id: number): Promise<ReadTopicDTO>{
     return this._topicService.get(id);
   }
