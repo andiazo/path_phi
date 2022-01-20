@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { DeleteDateColumn } from 'typeorm';
 import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
+import { EnrollUserDTO } from './dtos/enroll-user.dto';
 import { LearningPathService } from './learning-path.service';
 
 @Controller('learning-path')
@@ -33,17 +34,26 @@ export class LearningPathController {
         return this._learningPathService.update(id, learningPath);
     }
 
-    @Patch('/inscribir/:id')
-    enrollLearningPath(
-        @Param('id', ParseIntPipe) id: number,
-        @Body() id_user: number,
-
-    ){
-        return this._learningPathService.enroll(id, id_user);
-    }
+    
 
     @Delete('/eliminar/:id')
     deleteLearningPath(@Param('id', ParseIntPipe) id: number): Promise<void>{
         return this._learningPathService.delete(id);
+    }
+
+    @Patch('/enroll/:id')
+    enrollLearningPath(
+        @Param('id', ParseIntPipe) id: number, 
+        @Body() userId: EnrollUserDTO, 
+    ) {
+        return this._learningPathService.enroll(id, userId);
+    }
+
+    @Patch('/agregar-recurso/:id')
+    addTopic(
+        @Param('id', ParseIntPipe) id: number, 
+        @Body() learningPathId: AddTopicDTO, 
+    ){
+        return this._learningPathService.addTopic(id, learningPathId);
     }
 }

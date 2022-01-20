@@ -1,7 +1,9 @@
+import { Type } from "class-transformer";
 import path from "path/posix";
 import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { LearningPathController } from "../learning-path/learning-path.controller";
 import { LearningPath } from "../learning-path/learning-path.entity";
+import { Resource } from "../resource/resource.entity";
 
 @Entity('tema')
 export class Topic extends BaseEntity{
@@ -17,17 +19,13 @@ export class Topic extends BaseEntity{
   @Column({type: 'varchar', default: 'ACTIVE', length: 8})
   status: string;
 
-  @ManyToMany(type => LearningPath, learningPath => learningPath.topics )
-  @JoinTable({
-    name: "tema-ruta",
-    joinColumn: {
-      name: "id_tema", 
-      referencedColumnName: "id_topic"
-    }, 
-    inverseJoinColumn: {
-      name: "id_ruta", 
-      referencedColumnName: "id_ruta"
-    }
-  })
+  @ManyToMany(Type => LearningPath, learningPath => learningPath.topics )
+  @JoinColumn()
   learningPaths: LearningPath[]; 
+
+  @ManyToMany(Type => Resource, resource => resource.topics )
+  @JoinColumn()
+  resources: Resource[];
+
+
 }

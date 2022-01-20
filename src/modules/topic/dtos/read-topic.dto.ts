@@ -1,7 +1,8 @@
-import { Expose, Type } from "class-transformer";
+import { Exclude, Expose, Type } from "class-transformer";
 import { IsNumber, IsString } from "class-validator";
 import { ReadLearningPathDTO } from "src/modules/learning-path/dtos";
 
+@Exclude()
 export class ReadTopicDTO{
   @Expose()
   @IsNumber()

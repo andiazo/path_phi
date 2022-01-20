@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { AddTopicDTO } from '../learning-path/dtos/add-topic.dto';
 import { CreateTopicDTO, ReadTopicDTO, UpdateTopicDTO } from './dtos';
+import { AddResourceDTO } from './dtos/add-resource.dto';
 import { Topic } from './topic.entity';
 import { TopicService } from './topic.service';
 
@@ -37,4 +39,11 @@ export class TopicController {
     return this._topicService.delete(id);
   }
 
+  @Patch('/agregar-recurso/:id')
+  addResource(
+    @Param('id', ParseIntPipe) id: number, 
+    @Body() topicId: AddResourceDTO, 
+  ){
+    return this._topicService.addResource(id, topicId);
+  }
 }

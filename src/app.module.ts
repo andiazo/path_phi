@@ -8,9 +8,10 @@ import { RoleModule } from './modules/role/role.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { LearningPathModule } from './modules/learning-path/learning-path.module';
 import { TopicModule } from './modules/topic/topic.module';
+import { ResourceModule } from './modules/resource/resource.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, LearningPathModule, TopicModule],
+  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, LearningPathModule, TopicModule, ResourceModule],
 })
 export class AppModule {
   static port: number | string;

@@ -2,8 +2,12 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { In } from 'typeorm';
+import { ReadLearningPathDTO } from '../learning-path/dtos';
+import { AddTopicDTO } from '../learning-path/dtos/add-topic.dto';
 import { LearningPathRepository } from '../learning-path/learning-path.repository';
+import { ResourceRepository } from '../resource/resource.repository';
 import { CreateTopicDTO, ReadTopicDTO, UpdateTopicDTO } from './dtos';
+import { AddResourceDTO } from './dtos/add-resource.dto';
 import { Topic } from './topic.entity';
 import { TopicRepository } from './topic.repository';
 
@@ -13,7 +17,9 @@ export class TopicService {
     @InjectRepository(TopicRepository)
     private readonly _topicRepository: TopicRepository,
     @InjectRepository(TopicRepository)
-    private readonly _learningPathRepository: LearningPathRepository
+    private readonly _learningPathRepository: LearningPathRepository,
+    @InjectRepository(ResourceRepository)
+    private readonly _resourceRepository: ResourceRepository,
   ){}
   async get(id_topic: number): Promise<ReadTopicDTO>{
     if (!id_topic){
@@ -67,4 +73,26 @@ export class TopicService {
         }
         await this._topicRepository.update(id_topic, {status: 'INACTIVE'});
     }
+    
+    async addResource(id_topic: number, resourceId: AddResourceDTO): Promise<ReadTopicDTO>{
+        const topicExists = await this._topicRepository.findOne(id_topic, {
+            where: {status: 'ACTIVE'},
+        });
+        if (!topicExists){
+            throw new NotFoundException('Ese tema no existe');
+        }
+        const resourceExists = await this._resourceRepository.findOne(resourceId.id)
+        if(!topicExists){
+            throw new NotFoundException('Este recurso no existe');
+        }
+
+        let resources_list = topicExists.resources;
+        resources_list.push(resourceExists);
+        topicExists.resources = resources_list;
+
+        const updateTopic = await this._topicRepository.save(topicExists);
+        return plainToClass(ReadTopicDTO, updateTopic);
+    }
+
+    
 }

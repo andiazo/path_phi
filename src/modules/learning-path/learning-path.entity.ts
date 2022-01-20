@@ -30,7 +30,7 @@ export class LearningPath extends BaseEntity{
     @JoinColumn()
     users: User[];
 
-    @ManyToMany(type => Topic, topic => topic.learningPaths )
+    @ManyToMany(Type => Topic, topic => topic.learningPaths )
     @JoinColumn()
     topics: Topic[]; 
 }

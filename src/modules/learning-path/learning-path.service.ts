@@ -6,6 +6,8 @@ import { Topic } from '../topic/topic.entity';
 import { TopicRepository } from '../topic/topic.repository';
 import { UserRepository } from '../user/user.repository';
 import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
+import { AddTopicDTO } from './dtos/add-topic.dto';
+import { EnrollUserDTO } from './dtos/enroll-user.dto';
 import { LearningPath } from './learning-path.entity';
 import { LearningPathRepository } from './learning-path.repository';
 
@@ -120,20 +122,43 @@ export class LearningPathService {
         await this._learningPathRepository.update(id_ruta, {status: 'INACTIVE'});
     }
 
-    async enroll(id_ruta:number, id_user:number): Promise<void>{
+    async enroll(id_ruta:number, userId:EnrollUserDTO): Promise<ReadLearningPathDTO>{
         const learningPathExists = await this._learningPathRepository.findOne(id_ruta, {
             where: {status: 'ACTIVE'},
         });
         if (!learningPathExists){
             throw new NotFoundException('Esa ruta no existe');
         }
-        const userExists = await this._userRepository.findOne(id_user)
+        const userExists = await this._userRepository.findOne(userId.id)
         if(!userExists){
             throw new NotFoundException('Este usuario no existe');
         }
 
         let users_list = learningPathExists.users
+        users_list.push(userExists)
+        learningPathExists.users = users_list
 
-        await this._learningPathRepository.update(id_ruta, {users: users_list});
+        const updateLearn = await this._learningPathRepository.save(learningPathExists);
+        return plainToClass(ReadLearningPathDTO, updateLearn);
+    }
+
+    async addTopic(id_ruta:number, topicId: AddTopicDTO): Promise<ReadLearningPathDTO>{
+        const learningPathExists = await this._learningPathRepository.findOne(id_ruta, {
+            where: {status: 'ACTIVE'},
+        });
+        if (!learningPathExists){
+            throw new NotFoundException('Esa ruta no existe');
+        }
+        const topicExists = await this._topicRepository.findOne(topicId.id)
+        if(!topicExists){
+            throw new NotFoundException('Este tema no existe');
+        }
+
+        let topics_list = learningPathExists.topics
+        topics_list.push(topicExists)
+        learningPathExists.topics = topics_list
+
+        const updateLearn = await this._learningPathRepository.save(learningPathExists);
+        return plainToClass(ReadLearningPathDTO, updateLearn);
     }
 }
