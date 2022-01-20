@@ -19,7 +19,7 @@ export class Resource extends BaseEntity{
     @Column({type: 'varchar', default: 'ACTIVE', length: 8})
     status: string;
 
-    @ManyToMany(Type => Topic, topic => topic.resources )
+    @ManyToMany(Type => Topic, topic => topic.resources, {eager: true} )
     @JoinColumn()
     topics: Topic[];
 }
