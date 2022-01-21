@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { DeleteDateColumn } from 'typeorm';
 import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
+import { AddTopicDTO } from './dtos/add-topic.dto';
 import { EnrollUserDTO } from './dtos/enroll-user.dto';
 import { LearningPathService } from './learning-path.service';
 
