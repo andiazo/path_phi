@@ -1,6 +1,7 @@
 import { IsString, IsNumber } from "class-validator";
 import { Exclude, Expose, Type } from "class-transformer";
 import { ReadUserDto } from "src/modules/user/dto";
+import { ReadTopicDTO } from "src/modules/topic/dtos";
 
 @Exclude()
 export class ReadLearningPathDTO{
@@ -25,6 +26,10 @@ export class ReadLearningPathDTO{
     @Expose()
     @IsNumber()
     readonly cantidad_recursos: number;
+
+    @Expose()
+    @Type(type => ReadTopicDTO)
+    readonly topics: ReadTopicDTO[];
 
     @Expose()
     @Type(type => ReadUserDto)

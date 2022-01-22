@@ -5,6 +5,7 @@ import { In } from 'typeorm';
 import { ReadLearningPathDTO } from '../learning-path/dtos';
 import { AddTopicDTO } from '../learning-path/dtos/add-topic.dto';
 import { LearningPathRepository } from '../learning-path/learning-path.repository';
+import { Resource } from '../resource/resource.entity';
 import { ResourceRepository } from '../resource/resource.repository';
 import { CreateTopicDTO, ReadTopicDTO, UpdateTopicDTO } from './dtos';
 import { AddResourceDTO } from './dtos/add-resource.dto';
@@ -81,13 +82,14 @@ export class TopicService {
         if (!topicExists){
             throw new NotFoundException('Ese tema no existe');
         }
-        const resourceExists = await this._resourceRepository.findOne(resourceId.id)
-        if(!topicExists){
+        const resourceExists = await this._resourceRepository.findOne(resourceId.resource_id)
+        if(!resourceExists){
             throw new NotFoundException('Este recurso no existe');
         }
-
-        let resources_list = topicExists.resources;
-        resources_list.push(resourceExists);
+        console.log(typeof resourceExists);
+        let resources_list: Resource[] = topicExists.resources;
+        resources_list == undefined? resources_list = [resourceExists]:
+          resources_list.push(resourceExists);
         topicExists.resources = resources_list;
 
         const updateTopic = await this._topicRepository.save(topicExists);

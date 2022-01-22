@@ -39,34 +39,6 @@ export class LearningPathService {
 
     }
 
-    /*async indexToTopics(ids: number[]): Promise<Topic[]>{
-        console.log(typeof ids);
-        console.log(ids);
-        let topics: Topic[];
-        for (let id of ids){
-            if (!id){
-                throw new BadRequestException('No es un indice valido');
-            }
-            const topic: Topic = await this._topicRepository.findOne(id, {
-                where: {status: 'ACTIVE'},
-            }); 
-            if (!topic){
-                throw new NotFoundException('No se encontro ruta');
-            }
-            topics.push(topic);
-
-        }
-        
-        return topics;
-    }*/
-/*
-    function indexesToTopic(indices: number[]): Topic[]{
-        temas: Topic[] = [];
-        
-        return temas;
-
-    } */
-
     async getAll(): Promise<ReadLearningPathDTO[]>{
         const learningPaths: LearningPath[] = await this._learningPathRepository.find({
             where: {status: 'ACTIVE'},
@@ -149,14 +121,15 @@ export class LearningPathService {
         if (!learningPathExists){
             throw new NotFoundException('Esa ruta no existe');
         }
-        const topicExists = await this._topicRepository.findOne(topicId.id)
+        const topicExists = await this._topicRepository.findOne(topicId.id_topic)
         if(!topicExists){
             throw new NotFoundException('Este tema no existe');
         }
 
-        let topics_list = learningPathExists.topics
-        topics_list.push(topicExists)
-        learningPathExists.topics = topics_list
+        let topics_list: Topic[] = learningPathExists.topics
+        topics_list == undefined? topics_list = [topicExists]:
+            topics_list.push(topicExists);
+        learningPathExists.topics = topics_list;
 
         const updateLearn = await this._learningPathRepository.save(learningPathExists);
         return plainToClass(ReadLearningPathDTO, updateLearn);

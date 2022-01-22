@@ -25,7 +25,16 @@ export class User extends BaseEntity {
   roles: Role[];
 
   @ManyToMany(type => LearningPath, learningPath => learningPath.users)
-  @JoinTable({ name: 'inscripcion' })
+  @JoinTable({
+    name: "inscripcion",
+    joinColumn: {
+    name: "id_usuario",
+    referencedColumnName: "id"
+   },
+    inverseJoinColumn: {
+    name: "id_ruta",
+    referencedColumnName: "id_ruta"
+  }})
   learningPaths: LearningPath[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })

@@ -50,7 +50,7 @@ export class LearningPathController {
         return this._learningPathService.enroll(id, userId);
     }
 
-    @Patch('/agregar-recurso/:id')
+    @Patch('/agregar-tema/:id')
     addTopic(
         @Param('id', ParseIntPipe) id: number, 
         @Body() learningPathId: AddTopicDTO, 

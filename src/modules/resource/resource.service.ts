@@ -43,7 +43,8 @@ export class ResourceService {
   async create(recurso: Partial<CreateResourceDTO>): Promise<ReadResourceDTO>{
     const savedResource: Resource = await this._resourceRepository.save({
       nombre_recurso: recurso.nombre_recurso, 
-      descripcion_recurso: recurso.descripcion_recurso
+      descripcion_recurso: recurso.descripcion_recurso, 
+      enlace_recurso: recurso.enlace_recurso
     }); 
     return plainToClass(ReadResourceDTO, savedResource);
   }
@@ -63,13 +64,13 @@ export class ResourceService {
     }
 
     async delete(id_recurso: number): Promise<void>{
-        const topicExists = await this._topicRepository.findOne(id_recurso, {
+        const recursoExists = await this._resourceRepository.findOne(id_recurso, {
             where: {status: 'ACTIVE'},
         });
-        if (!topicExists){
+        if (!recursoExists){
             throw new NotFoundException('Ese tema no existe');
         }
-        await this._topicRepository.update(id_recurso, {status: 'INACTIVE'});
+        await this._resourceRepository.update(id_recurso, {status: 'INACTIVE'});
     }
 
 }

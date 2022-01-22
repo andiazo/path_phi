@@ -12,7 +12,7 @@ export class ResourceController {
     return this._resourceService.get(id);
   }
 
-  @Get('ruta/:id_topic')
+  @Get('/topic/:id_topic')
   getResourceByTopic(
     @Param('id_topic', ParseIntPipe) id_topic: number): Promise<ReadResourceDTO[]>{
     return this._resourceService.getResourceByTopic(id_topic);
@@ -32,7 +32,7 @@ export class ResourceController {
         return this._resourceService.update(id, recurso);
     }
 
-  @Delete('/eliminar-tema/:id')
+  @Delete('/eliminar-recurso/:id')
   deleteResource(@Param('id', ParseIntPipe) id: number): Promise<void>{
     return this._resourceService.delete(id);
   }

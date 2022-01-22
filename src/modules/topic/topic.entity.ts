@@ -24,7 +24,16 @@ export class Topic extends BaseEntity{
   learningPaths: LearningPath[]; 
 
   @ManyToMany(Type => Resource, resource => resource.topics )
-  @JoinColumn()
+  @JoinTable({
+    name: "recurso-tema",
+    joinColumn: {
+    name: "id_tema",
+    referencedColumnName: "id_topic"
+   },
+    inverseJoinColumn: {
+    name: "id_recurso",
+    referencedColumnName: "id_recurso"
+  }})
   resources: Resource[];
 
 

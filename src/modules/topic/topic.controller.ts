@@ -42,8 +42,8 @@ export class TopicController {
   @Patch('/agregar-recurso/:id')
   addResource(
     @Param('id', ParseIntPipe) id: number, 
-    @Body() topicId: AddResourceDTO, 
+    @Body() resourceId: AddResourceDTO, 
   ){
-    return this._topicService.addResource(id, topicId);
+    return this._topicService.addResource(id, resourceId);
   }
 }
