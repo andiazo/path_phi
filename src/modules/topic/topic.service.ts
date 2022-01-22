@@ -86,10 +86,9 @@ export class TopicService {
         if(!resourceExists){
             throw new NotFoundException('Este recurso no existe');
         }
-        console.log(typeof resourceExists);
         let resources_list: Resource[] = topicExists.resources;
         resources_list == undefined? resources_list = [resourceExists]:
-          resources_list.push(resourceExists);
+          resources_list.push(resourceExists);        //twitwi
         topicExists.resources = resources_list;
 
         const updateTopic = await this._topicRepository.save(topicExists);
