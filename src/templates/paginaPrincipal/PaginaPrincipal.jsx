@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../molecules/header/header'
 import Home from '../../organisms/home/Home'
 import Paths from '../../organisms/learningpaths/paths'
+import SpecificPath from '../../organisms/specificPath/specificPath'
 import "./pagPrincipal.css"
 
 const PaginaPrincipal = ({handleClick, username, setUsername}) => {
@@ -12,13 +13,13 @@ const PaginaPrincipal = ({handleClick, username, setUsername}) => {
     const reHandleClickLogin = () =>{
         handleClick("login")
     }
-    const [contentToShow, setContentToShow] = React.useState("home");
+    const [contentToShow, setContentToShow] = React.useState("specificPath");
     const [navegationTree, setNavegationTree] = React.useState("Inicio/");
     const handleChange = (contentString) => {
         setContentToShow(contentString)
     }
     React.useEffect(()=>{
-        if(contentToShow=="home"){
+        if(contentToShow === "home"){
           setNavegationTree("Inicio/")
         }
         else if(contentToShow=="paths"){
@@ -30,8 +31,10 @@ const PaginaPrincipal = ({handleClick, username, setUsername}) => {
         <>
             <div className="pag-main-container">
                 <Header handleClickNavigation = {handleChange} setUsername ={setUsername} username = {username} handleClickRegister= {reHandleClickRegister} handleClickLogin={reHandleClickLogin} navegationTree={navegationTree}/>
-                 {contentToShow === "home" && <Home/>}
+                 {contentToShow === "specificPath" && <SpecificPath/>}
+                 {(contentToShow === "home") && <Home/>}
                  {contentToShow === "paths" && <Paths/>}
+                 
             </div>
         </>
       );

@@ -9,6 +9,7 @@ const Header = ({handleClickNavigation, handleClickLogin, handleClickRegister, h
 
 const reSetUsername= () =>{
     setUsername("")
+    handleClickNavigation("home")
 }
 
 const reHandleClickNavigation = (string) => () =>{

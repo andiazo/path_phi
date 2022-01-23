@@ -1,0 +1,21 @@
+
+
+.specific-path__main-container{
+    width: 100%;
+    height: fit-content;
+    gap: 7vh;
+}
+.specific-path__content-container{
+    overflow: scroll;
+    
+    width: 90%;
+    height: 50vh;
+    padding: 2%;
+    
+    gap: 4%;
+    margin: auto;
+    box-shadow: inset -4px -4px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #276271;
+    transition: all 1s ease-out;
+}

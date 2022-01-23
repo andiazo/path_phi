@@ -1,0 +1,40 @@
+.path-form__main-container{
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 3vh;
+    gap: 2vh;
+    
+}
+
+.path-form__reaction{
+    gap: 0.5vw;
+    height: 8vw;
+    width: 8vw;
+}
+#path-form__opinion-text{
+    font-size: 1vw;
+    background-color: #E5E5E5;
+    border-color: transparent;
+    resize: none;
+    width: 15vw;
+    height: 10vw;
+}
+
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio]:checked + img {
+    transition: all 0.5s ease-out;
+    transform:scale(120%);
+}
+
+[type=radio] + img {
+    cursor: pointer;
+}

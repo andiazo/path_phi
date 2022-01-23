@@ -1,0 +1,33 @@
+.path__cubik{
+    box-sizing:content-box;
+    border: 1px solid #c4c4c4;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top:calc(100%);
+    left: -1px;
+    transform: rotateZ(-90Deg);
+    cursor: auto;
+}
+
+.path__next-cubik{
+    cursor: pointer;
+    box-sizing:content-box;
+    border: 1px solid #c4c4c4;
+    
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.path__main-container{
+    position: relative;
+    
+    
+}
+.path__paths-container{
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+}

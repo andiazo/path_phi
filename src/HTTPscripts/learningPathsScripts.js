@@ -15,3 +15,17 @@ export function getAllPaths(setPaths){
     }
     )
 }
+
+export function enrollInPath(setStatus,id_user, data){// data= {id: path_id}
+    axios.patch(`${defaultURL}learning-path/enroll/${id_user}`, data)
+    .then(response => {
+        setStatus(response.status)
+    })
+    .catch(mes =>{
+        if(mes.response && mes.response.data){
+            console.log(mes.response.data.message)
+        }
+        
+    }
+    )
+}

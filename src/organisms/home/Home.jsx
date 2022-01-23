@@ -1,6 +1,7 @@
 import "./home.css"
 import React from 'react'
 import PathPhiDescription from '../../molecules/pathPhiDescription/PathPhiDescription'
+import Path from '../../molecules/path/Path'
 const Home = ({handleClick, username, setUsername}) => {
     const [firsTime, setFirsTime] = React.useState(true)
     const reHandleClickRegister = () =>{
@@ -19,6 +20,7 @@ const Home = ({handleClick, username, setUsername}) => {
       return (
         <>
            <PathPhiDescription/>
+           <Path/>
         </>
       );
     };

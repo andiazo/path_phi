@@ -1,5 +1,5 @@
 
-const Input = ({id, type, width, height, transformStyle, transform, backgroundColor, padding, border}) => {
+const Input = ({id, type, width, height, transformStyle, transform, backgroundColor, padding, border, onChange , maxlength}) => {
     //Puede poner JavaScript *puro*
         
         const constStyle ={
@@ -15,9 +15,9 @@ const Input = ({id, type, width, height, transformStyle, transform, backgroundCo
             <>
             {
                 (type == "number")?
-                <input min = "6" max="100" style={constStyle} id={id} type={type}/>
+                <input maxlength = {maxlength} min = "6" max="100" style={constStyle} id={id} type={type} onChange={onChange}/>
                 :
-                <input style={constStyle} id={id} type={type}/>
+                <input maxlength = {maxlength} style={constStyle} id={id} type={type} onChange={onChange}/>
             }
             </>
         );
