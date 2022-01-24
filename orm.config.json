@@ -14,5 +14,6 @@
   "synchronize": true,
   "cli": {
     "migrationsDir": "src/database/migrations"
-  }
+  }, 
+  "syncronize": false
 }

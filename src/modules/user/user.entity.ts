@@ -26,15 +26,15 @@ export class User extends BaseEntity {
 
   @ManyToMany(type => LearningPath, learningPath => learningPath.users)
   @JoinTable({
-    name: 'inscripcion',
+    name: "inscripcion",
     joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id'
+      name: "id_usuario",
+      referencedColumnName: "id"
     },
     inverseJoinColumn: {
-      name: 'id_ruta',
-      referencedColumnName: 'id_ruta'
-    },
+      name: "id_ruta",
+      referencedColumnName: "id_ruta"
+    }
   })
   learningPaths: LearningPath[];
 

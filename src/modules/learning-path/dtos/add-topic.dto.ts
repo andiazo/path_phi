@@ -1,8 +1,7 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
 
-export class EnrollUserDTO {
+export class AddTopicDTO{
   @IsNotEmpty()
   @IsNumber()
-  readonly id: number;
-
+  readonly id_topic: number;
 }
