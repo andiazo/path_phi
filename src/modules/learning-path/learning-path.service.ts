@@ -4,6 +4,7 @@ import { plainToClass } from 'class-transformer';
 import { In } from 'typeorm';
 import { Topic } from '../topic/topic.entity';
 import { TopicRepository } from '../topic/topic.repository';
+import { User } from '../user/user.entity';
 import { UserRepository } from '../user/user.repository';
 import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
 import { AddTopicDTO } from './dtos/add-topic.dto';
@@ -105,14 +106,15 @@ export class LearningPathService {
     if (!learningPathExists) {
       throw new NotFoundException('Esa ruta no existe');
     }
-    const userExists = await this._userRepository.findOne(userId.id)
+    const userExists = await this._userRepository.findOne(userId.id_user);
     if (!userExists) {
       throw new NotFoundException('Este usuario no existe');
     }
 
-    let users_list = learningPathExists.users
-    users_list.push(userExists)
-    learningPathExists.users = users_list
+    let users_list: User[] = learningPathExists.users
+    users_list == undefined ? users_list = [userExists] :
+      users_list.push(userExists);
+    learningPathExists.users = users_list;
 
     const updateLearn = await this._learningPathRepository.save(learningPathExists);
     return plainToClass(ReadLearningPathDTO, updateLearn);
