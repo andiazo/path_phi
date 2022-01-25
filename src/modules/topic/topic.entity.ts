@@ -6,34 +6,35 @@ import { LearningPath } from "../learning-path/learning-path.entity";
 import { Resource } from "../resource/resource.entity";
 
 @Entity('tema')
-export class Topic extends BaseEntity{
+export class Topic extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
-  id_topic: number; 
-  
-  @Column({type: 'varchar', length: 40, nullable: false})
+  id_topic: number;
+
+  @Column({ type: 'varchar', length: 40, nullable: false })
   name_topic: string;
 
-  @Column({type: 'varchar', length: 150, nullable: false})
+  @Column({ type: 'varchar', length: 150, nullable: false })
   description_topic: string;
 
-  @Column({type: 'varchar', default: 'ACTIVE', length: 8})
+  @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
 
-  @ManyToMany(Type => LearningPath, learningPath => learningPath.topics )
+  @ManyToMany(Type => LearningPath, learningPath => learningPath.topics)
   @JoinColumn()
-  learningPaths: LearningPath[]; 
+  learningPaths: LearningPath[];
 
-  @ManyToMany(Type => Resource, resource => resource.topics )
+  @ManyToMany(Type => Resource, resource => resource.topics)
   @JoinTable({
-    name: "recurso-tema",
+    name: "recurso_tema",
     joinColumn: {
-    name: "id_tema",
-    referencedColumnName: "id_topic"
-   },
+      name: "id_tema",
+      referencedColumnName: "id_topic"
+    },
     inverseJoinColumn: {
-    name: "id_recurso",
-    referencedColumnName: "id_recurso"
-  }})
+      name: "id_recurso",
+      referencedColumnName: "id_recurso"
+    }
+  })
   resources: Resource[];
 
 
