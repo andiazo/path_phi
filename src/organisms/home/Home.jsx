@@ -20,7 +20,6 @@ const Home = ({handleClick, username, setUsername}) => {
       return (
         <>
            <PathPhiDescription/>
-           <Path/>
         </>
       );
     };

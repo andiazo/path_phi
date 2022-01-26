@@ -30,7 +30,7 @@ const reHandleClickNavigation = (string) => () =>{
                 :
                 <Text handle={reHandleClickNavigation("paths")} cursor = "pointer" textDecoration="underline" content = 'Rutas' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
                 }
-                <Text content = 'Acerca de' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
+                <Text  handle={reHandleClickNavigation("team")} cursor = "pointer" textDecoration="underline" content = 'Equipo' fontSize="1.2vw" color= "#7B7E9C" fontWeight="normal"/>
             </div>
             <div className = "main-header__login-register container--inrow">
                 {

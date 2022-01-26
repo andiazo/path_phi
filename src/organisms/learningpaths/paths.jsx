@@ -4,7 +4,7 @@ import PathCard from '../../molecules/learningPathCard/pathCard';
 import imgTitle from '../../img/paths/LearningPathsTittle.png'
 import Text from '../../atoms/text';
 import {getAllPaths} from '../../HTTPscripts/learningPathsScripts.js'
-const Paths = ({}) => {
+const Paths = ({handleLoadPath, myPaths, setMyPaths}) => {
     
     const [election, setElection] = React.useState("whole")
     const [firsTime, setFirsTime] = React.useState(true)
@@ -45,20 +45,6 @@ const Paths = ({}) => {
         },
     ]
     */
-    const myPaths = [
-        {
-            title: "Java",
-            description: "Ruta enfocada en los principios fundamentales y funcionales de Java",
-            difficulty: 5,
-            cantTemas: 10
-        },
-        {
-            title: "JavaScript",
-            description: "Aquí aprenderás a usar JavaScript en la web, entendiendo gran parte de su poder",
-            difficulty: 2,
-            cantTemas: 6
-        },
-    ]
     React.useEffect(()=>{
         if(firsTime){
             getAllPaths(setAllPaths)
@@ -85,6 +71,20 @@ const Paths = ({}) => {
             document.getElementsByClassName("paths__election-button--yours")[0].classList.replace("paths__election-button--normal","paths__election-button--clicked")
         }
     }, [election])
+    const handleEnroll = (newPath) => () => {
+        if(newPath){
+            let existnewPath = false
+            myPaths.map((path) =>{
+                existnewPath = path.nombre_ruta === newPath.nombre_ruta || existnewPath
+            })
+            if(!existnewPath){
+                setMyPaths([...myPaths, newPath])    
+            }
+        }
+        else{
+            //alert("No se pudo inscribir")
+        }
+    }
     //Puede poner JavaScript *puro* 
       return (
         <>
@@ -105,13 +105,13 @@ const Paths = ({}) => {
             {election === "whole"?
                 <>
                 {allPaths.length>0? allPaths.map((path) =>
-                    <PathCard type={election} pathObject={path}/>
+                    <PathCard handle = {handleEnroll} type={election} pathObject={path}/>
                 ): <Text content = 'No se pudo cargar las rutas de aprendizaje' fontSize="30px" color= "#C19D72" fontWeight="500"/>}
                 </>
                 :
                 <>
                 {myPaths? myPaths.map((path) =>
-                    <PathCard type={election} pathObject={path}/>
+                    <PathCard handle = {handleLoadPath} type={election} pathObject={path}/>
                 ): <Text content = 'No se pudo cargar las rutas de aprendizaje' fontSize="30px" color= "#523E53" fontWeight="500"/>}
                 </>
             }

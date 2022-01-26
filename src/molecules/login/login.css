@@ -5,6 +5,7 @@ body {
 }
 
 .main-container{
+    
     position: absolute;
     left: 10%;
     top: 10%;
@@ -25,7 +26,6 @@ body {
     
     align-items: center;
 }
-
 
 .login-container h3{
     font-style: italic;
@@ -80,4 +80,7 @@ body {
     to{
         color: rgba(206, 80, 80, 0);
     }
+}
+#input-password, #input-username{
+    font-size: 2vw;
 }

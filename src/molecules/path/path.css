@@ -1,3 +1,16 @@
+.path__cubik-curve{
+    position: absolute;
+    border: 1px solid white;
+    transform: rotateZ(45Deg);
+    border-color: transparent transparent transparent #C4C4C4;
+    z-index: -4;
+    pointer-events: none;
+    border-radius: 500px;
+    width: 200%;
+    height: 200%;
+    left: 0;
+    top: 0;
+}
 .path__cubik{
     box-sizing:content-box;
     border: 1px solid #c4c4c4;

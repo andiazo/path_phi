@@ -1,4 +1,11 @@
+.specific-path__title-container{
+    background: #276271;
+    padding: 1vw 5vw;
+    
+    clip-path: polygon(10% 0, 100% 0, 92% 100%, 0 100%);
+    transform: rotateZ(-4Deg);
 
+}
 
 .specific-path__main-container{
     width: 100%;
@@ -9,8 +16,8 @@
     overflow: scroll;
     
     width: 90%;
-    height: 50vh;
-    padding: 2%;
+    height: 70vh;
+    padding: 5%;
     
     gap: 4%;
     margin: auto;

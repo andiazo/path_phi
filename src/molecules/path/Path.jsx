@@ -8,7 +8,7 @@ const Path = () => {
     const scala  = 50
     const [topics, setTopics] = React.useState([1,1,2,3,5,8]) // 1 2 3 4 5 6 = index - topicRange + 1 
     const [data, setData] =  React.useState([{
-      title: "El título no existe",
+      title: "Título del tema",
       description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
       resources : [
           {name: "Nombre del recurso",
@@ -24,7 +24,7 @@ const Path = () => {
       topicNumber : 1
   },
   {
-    title: "El título no existe",
+    title: "Título del tema",
     description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
     resources : [
         {name: "Nombre del recurso",
@@ -40,7 +40,7 @@ const Path = () => {
     topicNumber : 2
 },
 {
-  title: "El título no existe",
+  title: "Título del tema",
   description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
   resources : [
       {name: "Nombre del recurso",
@@ -56,7 +56,7 @@ const Path = () => {
   topicNumber : 3
 },
 {
-  title: "El título no existe",
+  title: "Título del tema",
   description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
   resources : [
       {name: "Nombre del recurso",
@@ -72,7 +72,7 @@ const Path = () => {
   topicNumber : 4
 },
 {
-  title: "El título no existe",
+  title: "Título del tema",
   description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
   resources : [
       {name: "Nombre del recurso",
@@ -86,11 +86,27 @@ const Path = () => {
       }
   ],
   topicNumber : 5
+},
+{
+  title: "Título del tema",
+  description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
+  resources : [
+      {name: "Nombre del recurso",
+      link: "Vínculo",
+      time: "Tiempo estimado"
+      },
+      {
+      name: "Nombre del recurso",
+      link: "Vínculo",
+      time: "Tiempo estimado"
+      }
+  ],
+  topicNumber : 6
 }])
-    const [topicRange, setTopicRange] = React.useState(3) //cantidad de paths renderizados
+    const [topicRange, setTopicRange] = React.useState(1) //cantidad de paths renderizados
     const [nextElemSize, setNextElemSize] = React.useState(0)
     const topicData = {
-      title: "El título no existe",
+      title: "Título del tema",
       description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
       resources : [
           {name: "Nombre del recurso",
@@ -113,7 +129,7 @@ const Path = () => {
           setTopicRange(topicRange-1)
         }
         const handleClickNext = () => {
-
+          setTopicCompleted(false)
           //setTopics((topics)=> topics.unshift(topics.length+1)    
           setTopics(topics => [...topics])
           setTopicRange(topicRange+1)
@@ -149,7 +165,8 @@ const Path = () => {
        onClick={index == dataArray.length-2?handleClickPrev:(e) => e.stopPropagation()}
        style={{cursor: index == dataArray.length-2?"pointer":"auto",width:dataArray[index]*scala-1, height:dataArray[index]*scala-1}} 
        className={"path__cubik"}>
-         {index == dataArray.length-1? <Topic setTopicCompleted={setTopicCompleted} topicCompleted={topicCompleted} topicData={data[Math.abs(topics.length - index - topicRange)]}/>: data[Math.abs(topics.length - index - topicRange)].topicNumber}{index != topics.length-topicRange && index>= 1?divDrawer(dataArray, index-1):""}
+         <div className="path__cubik-curve"></div>
+         {index == dataArray.length-1? <Topic setTopicCompleted={setTopicCompleted} topicCompleted={topicCompleted} topicData={data[Math.abs(topics.length - index - topicRange)]}/>: /*data[Math.abs(topics.length - index - topicRange)].topicNumber*/""}{index != topics.length-topicRange && index>= 1?divDrawer(dataArray, index-1):""}
        </div>
     }
     //Puede poner JavaScript *puro* 

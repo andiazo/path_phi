@@ -80,11 +80,11 @@ const reHandleClickRegister = () =>{
             </div>
             <div className="container--inrow">
               <Text content = 'Edad' fontSize="2vw" color= "#7B7E9C" fontWeight="bold"/>
-              <Input type="number" id="register__input-age" width= "3em" height= "2vw" transformStyle= "preserve-3d" transform= "rotateY(-45deg)"backgroundColor= "#E5E5E5"padding= "0 5px 0 5px" border= "none"/>
+              <Input type="number" id="register__input-age" width= "4vw" height= "3vw" transformStyle= "preserve-3d" transform= "rotateY(-45deg)"backgroundColor= "#E5E5E5"padding= "0 5px 0 5px" border= "none"/>
             </div>
             <div className="container--inrow">
-              <Input type="checkbox" id="register__input-acceptTerms" width= "2em" height= "2em" transformStyle= "preserve-3d" transform= "rotateY(45Deg)"backgroundColor= "#000000"padding= "0 5px 0 5px" border= "none"/>
-              <Text content = 'Aceptar términos de tratamiento de datos' fontSize="0.6vw" color= "#7B7E9C" fontWeight="bold"/>
+              <Input type="checkbox" id="register__input-acceptTerms" width= "3vw" height= "3vw" transformStyle= "preserve-3d" transform= "rotateY(45Deg)"backgroundColor= "#000000"padding= "0 5px 0 5px" border= "none"/>
+              <Text content = 'Aceptar términos de tratamiento de datos' fontSize="1vw" color= "#7B7E9C" fontWeight="bold"/>
             </div>
           </div>
           

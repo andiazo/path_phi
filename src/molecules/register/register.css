@@ -90,3 +90,6 @@ body {
         color: rgba(206, 80, 80, 0);
     }
 }
+#register__input-username, #register__input-password, #register__input-email, #register__input-age{
+    font-size: 2vw;
+}

@@ -3,16 +3,17 @@
     overflow: scroll;
     
     width: 90%;
-    height: 30%;
+    height: 50vh;
     display: flex;
     flex-direction: row;
 
     justify-content: center;
     justify-items:flex-start;
     padding: 2%;
+    margin-bottom: 2%;
     flex-wrap: wrap;
     gap: 4%;
-    margin: auto;
+    margin: auto auto 4vw auto;
     box-shadow: inset -4px -4px 7px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
 
