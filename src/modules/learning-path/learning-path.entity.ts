@@ -26,11 +26,11 @@ export class LearningPath extends BaseEntity {
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
 
-  @ManyToMany(Type => User, user => user.learningPaths, { eager: true })
+  @ManyToMany(Type => User, user => user.learningPaths)
   @JoinColumn()
   users: User[];
 
-  @ManyToMany(Type => Topic, topic => topic.learningPaths)
+  @ManyToMany(Type => Topic, topic => topic.learningPaths, { eager: true })
   @JoinTable({
     name: "ruta_tema",
     joinColumn: {

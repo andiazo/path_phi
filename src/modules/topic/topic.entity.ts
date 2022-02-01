@@ -23,7 +23,7 @@ export class Topic extends BaseEntity {
   @JoinColumn()
   learningPaths: LearningPath[];
 
-  @ManyToMany(Type => Resource, resource => resource.topics)
+  @ManyToMany(Type => Resource, resource => resource.topics, {eager: true})
   @JoinTable({
     name: "recurso_tema",
     joinColumn: {

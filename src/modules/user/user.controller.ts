@@ -13,8 +13,8 @@ export class UserController {
   constructor(private readonly _userService: UserService) { }
 
   @Get(':userId')
-  @Roles(RoleType.ADMIN) //especifico los roles que quiero que puedan ingresar a este método
-  @UseGuards(AuthGuard(), RoleGuard)
+  //@Roles(RoleType.ADMIN) //especifico los roles que quiero que puedan ingresar a este método
+  //@UseGuards(AuthGuard(), RoleGuard)
   getUser(@Param('userId', ParseIntPipe) userId: number): Promise<ReadUserDto> {
     return this._userService.get(userId);
   }

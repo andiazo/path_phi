@@ -1,5 +1,6 @@
 import { Type } from "class-transformer";
 import { IsEmail, IsNumber } from "class-validator";
+import { ReadLearningPathDTO } from "src/modules/learning-path/dtos";
 import { ReadUserDetailDto } from "./read-user-details.dto";
 
 export class ReadUserDto {
@@ -14,4 +15,7 @@ export class ReadUserDto {
 
   @Type(type => ReadUserDetailDto)
   readonly details: ReadUserDetailDto;
+
+  @Type(type => ReadLearningPathDTO)
+  readonly learningPaths: ReadLearningPathDTO[];
 }
