@@ -5,7 +5,7 @@ import { LearningPathRepository } from '../learning-path/learning-path.repositor
 import { UserRepository } from '../user/user.repository';
 import { ReadCommentDTO } from './dtos/read-comment.dto';
 import { plainToClass } from 'class-transformer';
-import { In } from 'typeorm';
+import { In, Not } from 'typeorm';
 import { Comment } from './comment.entity';
 import { CreateCommentDTO } from './dtos/create-comment.dto';
 import { UpdateCommentDTO } from './dtos/update-comment.dto';
@@ -45,8 +45,28 @@ export class CommentService {
   }
 
   async create(comment: Partial<CreateCommentDTO>): Promise<ReadCommentDTO>{
+    const id_user = comment.id_user;
+    const id_ruta = comment.id_ruta;
+    const userExists = await this._userRepository.findOne(id_user, {
+      where: {status: 'ACTIVE'},
+    });
+
+    const learningPathExists = await this._learningPathRepository.findOne(id_ruta, {
+      where: {status: 'ACTIVE'},
+    });
+
+    if(!userExists) {
+      throw new NotFoundException("El usuario no existe");
+    }
+
+    if(!learningPathExists) {
+      throw new NotFoundException("Ruta de aprendizaje no existe");
+    }
+
     const savedComment: Comment = await this._CommentRepository.save({
       content: comment.content,
+      user: userExists,
+      learningPath: learningPathExists,
     }); 
     return plainToClass(ReadCommentDTO, savedComment);
   }
