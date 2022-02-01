@@ -1,5 +1,5 @@
 import { join } from "path";
-import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Topic } from "../topic/topic.entity";
 import { User } from "../user/user.entity";
 import { Comment } from "../comment/comment.entity";
@@ -45,7 +45,17 @@ export class LearningPath extends BaseEntity {
   })
   topics: Topic[];
 
-  @ManyToOne(Type => Comment, comment => comment.learningPath)
-  @JoinColumn()
+  @OneToMany(Type => Comment, comment => comment.learningPath, { eager: true })
+  @JoinTable({
+    name: "comentario_ruta",
+    joinColumn: {
+      name: "id_ruta",
+      referencedColumnName: "id_ruta"
+    },
+    inverseJoinColumn: {
+      name: "id_comentario",
+      referencedColumnName: "id_comment"
+    }
+  })
   comments: Comment[];
 }

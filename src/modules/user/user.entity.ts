@@ -2,6 +2,8 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColum
 import { UserDetails } from './user.details.entity';
 import { Role } from '../role/role.entity';
 import { LearningPath } from "../learning-path/learning-path.entity";
+import { Comment } from "../comment/comment.entity";
+
 @Entity('users')
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
@@ -38,9 +40,34 @@ export class User extends BaseEntity {
   })
   learningPaths: LearningPath[];
 
+  @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
+  status: string;
+
+  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+  updatedAt: Date;
+
+  @OneToMany(Type => Comment, comment => comment.user, { eager: true })
+  @JoinTable({
+    name: "user_comentario",
+    joinColumn: {
+      name: "id_usuario",
+      referencedColumnName: "id"
+    },
+    inverseJoinColumn: {
+      name: "id_comment",
+      referencedColumnName: "id_comment"
+    }
+  })
+  comment: Comment;
+
+  /**
+
   @OneToMany(type => Comment, comment => comment.user, { eager: true })
   @JoinTable({
-    name: "inscripcion",
+    name: "usuario_comentario",
     joinColumn: {
       name: "id_usuario",
       referencedColumnName: "id"
@@ -51,13 +78,5 @@ export class User extends BaseEntity {
     }
   })
   comments: Comment[];
-
-  @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
-  status: string;
-
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
-  updatedAt: Date;
+ */
 }

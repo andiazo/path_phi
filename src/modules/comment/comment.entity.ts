@@ -12,25 +12,14 @@ export class Comment extends BaseEntity {
   @Column({ type: 'varchar', length: 150, nullable: false })
   content: string;
 
-
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
 
-  @ManyToOne(Type => User, user => user.comments)
+  @ManyToOne(Type => User, user => user.comment)
   @JoinColumn()
   user: User;
 
-  @OneToMany(Type => LearningPath, learningPath => learningPath.comments, { eager: true })
-  @JoinTable({
-    name: "comentario_ruta",
-    joinColumn: {
-      name: "id_comentario",
-      referencedColumnName: "id_comment"
-    },
-    inverseJoinColumn: {
-      name: "id_ruta",
-      referencedColumnName: "id_ruta"
-    }
-  })
+  @ManyToOne(Type => LearningPath, learningPath => learningPath.comments)
+  @JoinColumn()
   learningPath: LearningPath;
 }
