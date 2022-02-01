@@ -1,7 +1,8 @@
 import { join } from "path";
-import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Topic } from "../topic/topic.entity";
 import { User } from "../user/user.entity";
+import { Comment } from "../comment/comment.entity";
 
 @Entity('ruta')
 export class LearningPath extends BaseEntity {
@@ -43,4 +44,8 @@ export class LearningPath extends BaseEntity {
     }
   })
   topics: Topic[];
+
+  @ManyToOne(Type => Comment, comment => comment.learningPath)
+  @JoinColumn()
+  comments: Comment[];
 }

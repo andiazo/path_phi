@@ -23,7 +23,7 @@ export class Comment extends BaseEntity {
   @OneToMany(Type => LearningPath, learningPath => learningPath.comments, { eager: true })
   @JoinTable({
     name: "comentario_ruta",
-    JoinColumn: {
+    joinColumn: {
       name: "id_comentario",
       referencedColumnName: "id_comment"
     },
