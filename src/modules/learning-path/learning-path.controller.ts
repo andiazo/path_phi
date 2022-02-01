@@ -17,7 +17,6 @@ export class LearningPathController {
 
   @Get()
   getLearningPaths(): Promise<ReadLearningPathDTO[]> {
-    console.log("En efecto");
     return this._learningPathService.getAll();
   }
 
