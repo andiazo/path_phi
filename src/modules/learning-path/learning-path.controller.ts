@@ -1,53 +1,64 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { DeleteDateColumn } from 'typeorm';
-import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO, EnrollUserDTO } from './dtos';
+import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
+import { AddTopicDTO } from './dtos/add-topic.dto';
+import { EnrollUserDTO } from './dtos/enroll-user.dto';
 import { LearningPathService } from './learning-path.service';
 
 @Controller('learning-path')
 export class LearningPathController {
-    constructor(private readonly _learningPathService: LearningPathService){}
+  constructor(private readonly _learningPathService: LearningPathService) { }
 
-    @Get(':id')
-    getLearningPath(@Param('id', ParseIntPipe) id:number): Promise<ReadLearningPathDTO>{
-        return this._learningPathService.get(id);
-    }
-    //Espacio para cuando existan asociaciones uwu
+  @Get('/consultar/:id')
+  getLearningPath(@Param('id', ParseIntPipe) id: number): Promise<ReadLearningPathDTO> {
+    return this._learningPathService.get(id);
+  }
+  //Espacio para cuando existan asociaciones uwu
 
-    @Get()
-    getLearningPaths(): Promise<ReadLearningPathDTO[]> {
-        console.log("En efecto");
-        return this._learningPathService.getAll();
-    }
+  @Get()
+  getLearningPaths(): Promise<ReadLearningPathDTO[]> {
+    return this._learningPathService.getAll();
+  }
 
-    /*@Get('/usuario/:id')
-    getByUser(@Param('id', ParseIntPipe) id:number){
-        return this._learningPathService.getLearningPathByUser(id)
-    }*/
+  /*@Get('/usuario/:id')
+  getByUser(@Param('id', ParseIntPipe) id:number){
+      return this._learningPathService.getLearningPathByUser(id)
+  }*/
 
-    @Post('/crear-ruta')
-    createLearningPath(@Body() learningPath: Partial<CreateLearningPathDTO>): Promise<ReadLearningPathDTO>{
-        return this._learningPathService.create(learningPath);
-    }
+  @Post('/crear-ruta')
+  createLearningPath(@Body() learningPath: Partial<CreateLearningPathDTO>): Promise<ReadLearningPathDTO> {
+    return this._learningPathService.create(learningPath);
+  }
 
-    @Patch(':id')
-    updateLearningPath(
-        @Param('id', ParseIntPipe) id: number,
-        @Body() learningPath: Partial<UpdateLearningPathDTO>,
+  @Patch('/actualizar/:id')
+  updateLearningPath(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() learningPath: Partial<UpdateLearningPathDTO>,
 
-    ){
-        return this._learningPathService.update(id, learningPath);
-    }
+  ) {
+    return this._learningPathService.update(id, learningPath);
+  }
 
-    @Delete(':id')
-    deleteLearningPath(@Param('id', ParseIntPipe) id: number): Promise<void>{
-        return this._learningPathService.delete(id);
-    }
 
-    @Patch('/enroll/:id')
-    enrollLearningPath(
-        @Param('id', ParseIntPipe) id: number,
-        @Body() userId: EnrollUserDTO,
-    ){
-        return this._learningPathService.enroll(id, userId);
-    }
+
+  @Delete('/eliminar/:id')
+  deleteLearningPath(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return this._learningPathService.delete(id);
+  }
+
+  @Patch('/enroll/:id')
+  enrollLearningPath(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() userId: EnrollUserDTO,
+  ) {
+    return this._learningPathService.enroll(id, userId);
+  }
+
+  @Patch('/agregar-tema/:id')
+  addTopic(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() learningPathId: AddTopicDTO,
+  ) {
+    return this._learningPathService.addTopic(id, learningPathId);
+  }
 }

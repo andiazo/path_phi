@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, JoinTable, ManyToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, JoinTable, ManyToMany, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { UserDetails } from './user.details.entity';
 import { Role } from '../role/role.entity';
 import { LearningPath } from "../learning-path/learning-path.entity";
@@ -24,19 +24,33 @@ export class User extends BaseEntity {
   @JoinTable({ name: 'user_roles' })
   roles: Role[];
 
-  @ManyToMany(type => LearningPath, learningPath => learningPath.users)
+  @ManyToMany(type => LearningPath, learningPath => learningPath.users, { eager: true })
   @JoinTable({
-    name: 'inscripcion',
+    name: "inscripcion",
     joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id'
+      name: "id_usuario",
+      referencedColumnName: "id"
     },
     inverseJoinColumn: {
-      name: 'id_ruta',
-      referencedColumnName: 'id_ruta'
-    },
+      name: "id_ruta",
+      referencedColumnName: "id_ruta"
+    }
   })
   learningPaths: LearningPath[];
+
+  @OneToMany(type => Comment, comment => comment.user, { eager: true })
+  @JoinTable({
+    name: "inscripcion",
+    joinColumn: {
+      name: "id_usuario",
+      referencedColumnName: "id"
+    },
+    inverseJoinColumn: {
+      name: "id_ruta",
+      referencedColumnName: "id_ruta"
+    }
+  })
+  comments: Comment[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;

@@ -1,8 +1,7 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
 
-export class EnrollUserDTO {
+export class AddResourceDTO{
   @IsNotEmpty()
   @IsNumber()
-  readonly id_user: number;
-
+  readonly resource_id: number;
 }
