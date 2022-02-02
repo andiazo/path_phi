@@ -10,9 +10,10 @@ import { LearningPathModule } from './modules/learning-path/learning-path.module
 import { TopicModule } from './modules/topic/topic.module';
 import { ResourceModule } from './modules/resource/resource.module';
 import { CommentModule } from './modules/comment/comment.module';
+import { GradeModule } from './modules/grade/grade.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, LearningPathModule, TopicModule, ResourceModule, CommentModule],
+  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, LearningPathModule, TopicModule, ResourceModule, CommentModule, GradeModule],
 })
 export class AppModule {
   static port: number | string;
