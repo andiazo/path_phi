@@ -4,9 +4,10 @@ import { LearningPathRepository } from '../learning-path/learning-path.repositor
 import { UserRepository } from '../user/user.repository';
 import { GradeService } from './grade.service';
 import { GradeController } from './grade.controller';
+import { GradeRepository } from './grade.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([GradeModule, LearningPathRepository, UserRepository])],
+  imports: [TypeOrmModule.forFeature([GradeRepository, LearningPathRepository, UserRepository])],
   controllers: [GradeController],
   providers: [GradeService]
 })

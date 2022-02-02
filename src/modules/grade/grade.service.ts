@@ -1,7 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
+import { In } from 'typeorm';
 import { LearningPathRepository } from '../learning-path/learning-path.repository';
 import { UserRepository } from '../user/user.repository';
+import { CreateGradeDTO, ReadGradeDTO, UpdateGradeDTO } from './dtos';
+import { Grade } from './grade.entity';
 import { GradeRepository } from './grade.repository';
 
 @Injectable()
@@ -16,30 +20,49 @@ export class GradeService {
     private readonly _userRepository: UserRepository,
   ) { }
 
-  async get(id_comment: number): Promise<ReadCommentDTO>{
-    if (!id_comment){
-      throw new BadRequestException('Se necesita ID del comentario');
+  async get(id_grade: number): Promise<ReadGradeDTO>{
+    if (!id_grade){
+      throw new BadRequestException('Se necesita id de la nota');
     } 
-    const recurso = await this._CommentRepository.findOne(id_comment);
-    if (!recurso){
+    const grade = await this._GradeRepository.findOne(id_grade);
+    if (!grade){
       throw new NotFoundException('El recurso no existe');
     }
-    return plainToClass(ReadCommentDTO, recurso);
+    return plainToClass(ReadGradeDTO, grade);
   } 
 
-  async getCommentByLearninPath(id_ruta: number): Promise<ReadCommentDTO[]>{
+  async getGradesByLearningPath(id_ruta: number): Promise<ReadGradeDTO[]>{
     if (!id_ruta){
       throw new BadRequestException('Es necesario el ID de la ruta');
     } 
-    const comments: Comment[] = await this._CommentRepository.find({
+    const grades: Grade[] = await this._GradeRepository.find({
       where: {status: 'ACTIVE', learningPath: In([id_ruta])}, 
     });
-    return comments.map(comment => plainToClass(ReadCommentDTO, comment));
+
+    return grades.map(grade => plainToClass(ReadGradeDTO, grade));
   }
 
-  async create(comment: Partial<CreateCommentDTO>): Promise<ReadCommentDTO>{
-    const id_user = comment.id_user;
-    const id_ruta = comment.id_ruta;
+  async getAverageGradesByLearningPath(id_ruta: number): Promise<number>{
+    if (!id_ruta){
+      throw new BadRequestException('Es necesario el ID de la ruta');
+    } 
+    const grades: Grade[] = await this._GradeRepository.find({
+      where: {status: 'ACTIVE', learningPath: In([id_ruta])}, 
+    });
+  
+    let sum_grade = 0;
+    for (let grade of grades){
+      sum_grade += grade.grade;
+    }
+    const average_grade = sum_grade/grades.length;
+
+    return average_grade;
+  }0
+
+  async create(grade: Partial<CreateGradeDTO>): Promise<ReadGradeDTO>{
+    const id_user = grade.id_user;
+    const id_ruta = grade.id_ruta;
+
     const userExists = await this._userRepository.findOne(id_user, {
       where: {status: 'ACTIVE'},
     });
@@ -56,36 +79,36 @@ export class GradeService {
       throw new NotFoundException("Ruta de aprendizaje no existe");
     }
 
-    const savedComment: Comment = await this._CommentRepository.save({
-      content: comment.content,
+    const savedGrade: Grade = await this._GradeRepository.save({
+      grade: grade.grade,
       user: userExists,
       learningPath: learningPathExists,
     }); 
-    return plainToClass(ReadCommentDTO, savedComment);
+    return plainToClass(ReadGradeDTO, savedGrade);
   }
 
   async update(
-        id_comment: number, comment: Partial<UpdateCommentDTO>
-        ): Promise<ReadCommentDTO>{
-        const commentExists = await this._CommentRepository.findOne(id_comment, {
+        id_grade: number, grade: Partial<UpdateGradeDTO>
+        ): Promise<ReadGradeDTO>{
+        const gradeExists = await this._GradeRepository.findOne(id_grade, {
             where: {status: 'ACTIVE'},
         });
-        if (!commentExists){
-            throw new NotFoundException('Comentario no encontrado');
+        if (!gradeExists){
+            throw new NotFoundException('Calificación no encontrada');
         }
-        const updatedComment = await this._CommentRepository.update(id_comment, comment);
+        const updatedGrade = await this._GradeRepository.update(id_grade, grade);
 
-        return plainToClass(ReadCommentDTO, updatedComment);
+        return plainToClass(ReadGradeDTO, updatedGrade);
     }
 
-    async delete(id_comment: number): Promise<void>{
-        const commentExists = await this._CommentRepository.findOne(id_comment, {
+    async delete(id_grade: number): Promise<void>{
+        const gradeExists = await this._GradeRepository.findOne(id_grade, {
             where: {status: 'ACTIVE'},
         });
-        if (!commentExists){
-            throw new NotFoundException('El comentario no existe');
+        if (!gradeExists){
+            throw new NotFoundException('La calificación no existe');
         }
-        await this._CommentRepository.update(id_comment, {status: 'INACTIVE'});
+        await this._GradeRepository.update(id_grade, {status: 'INACTIVE'});
     }
 
 }

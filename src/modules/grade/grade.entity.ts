@@ -5,8 +5,6 @@ import { User } from "../user/user.entity";
 
 @Entity('calificacion')
 export class Grade extends BaseEntity {
-  @PrimaryGeneratedColumn('increment')
-  id_grade: number;
 
   @Column({ type: 'int', nullable: false })
   grade: number;
@@ -14,11 +12,11 @@ export class Grade extends BaseEntity {
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string;
 
-  @ManyToOne(Type => User, user => user.comment)
+  @ManyToOne(Type => User, { primary: true, })
   @JoinColumn()
   user: User;
 
-  @ManyToOne(Type => LearningPath, learningPath => learningPath.comments)
+  @ManyToOne(Type => LearningPath, { primary: true, })
   @JoinColumn()
   learningPath: LearningPath;
 }

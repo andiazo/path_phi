@@ -27,11 +27,11 @@ export class CommentService {
     if (!id_comment){
       throw new BadRequestException('Se necesita ID del comentario');
     } 
-    const recurso = await this._CommentRepository.findOne(id_comment);
-    if (!recurso){
+    const comment = await this._CommentRepository.findOne(id_comment);
+    if (!comment){
       throw new NotFoundException('El recurso no existe');
     }
-    return plainToClass(ReadCommentDTO, recurso);
+    return plainToClass(ReadCommentDTO, comment);
   } 
 
   async getCommentByLearninPath(id_ruta: number): Promise<ReadCommentDTO[]>{
