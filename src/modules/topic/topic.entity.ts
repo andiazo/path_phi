@@ -37,5 +37,4 @@ export class Topic extends BaseEntity {
   })
   resources: Resource[];
 
-
 }

@@ -4,6 +4,7 @@ import { plainToClass } from 'class-transformer';
 import { In } from 'typeorm';
 import { Topic } from '../topic/topic.entity';
 import { TopicRepository } from '../topic/topic.repository';
+import { ReadUserDto } from '../user/dto';
 import { User } from '../user/user.entity';
 import { UserRepository } from '../user/user.repository';
 import { CreateLearningPathDTO, ReadLearningPathDTO, UpdateLearningPathDTO } from './dtos';
@@ -99,25 +100,59 @@ export class LearningPathService {
     await this._learningPathRepository.update(id_ruta, { status: 'INACTIVE' });
   }
 
-  async enroll(id_ruta: number, userId: EnrollUserDTO): Promise<ReadLearningPathDTO> {
+  async enroll(id_ruta: number, userId: number): Promise<ReadUserDto> {
     const learningPathExists = await this._learningPathRepository.findOne(id_ruta, {
       where: { status: 'ACTIVE' },
     });
     if (!learningPathExists) {
       throw new NotFoundException('Esa ruta no existe');
     }
-    const userExists = await this._userRepository.findOne(userId.id_user);
+    const userExists = await this._userRepository.findOne(userId);
     if (!userExists) {
       throw new NotFoundException('Este usuario no existe');
     }
 
-    let users_list: User[] = learningPathExists.users
-    users_list == undefined ? users_list = [userExists] :
-      users_list.push(userExists);
-    learningPathExists.users = users_list;
+    let rutas: LearningPath[] = userExists.learningPaths;
+    rutas == undefined ? rutas = [learningPathExists] :
+      rutas.push(learningPathExists);
+    userExists.learningPaths = rutas;
 
-    const updateLearn = await this._learningPathRepository.save(learningPathExists);
-    return plainToClass(ReadLearningPathDTO, updateLearn);
+    const updateUser = await this._userRepository.save(userExists);
+    return plainToClass(ReadUserDto, updateUser)
+
+
+    // let users_list: User[] = learningPathExists.users;
+    // console.log(learningPathExists.users)
+    // users_list == undefined ? users_list = [userExists] :
+    //   users_list.push(userExists);
+    // learningPathExists.users = users_list;
+
+    // const updateLearn = await this._learningPathRepository.save(learningPathExists);
+    // return plainToClass(ReadLearningPathDTO, updateLearn);
+  }
+
+  async leave(id_user: number, id_ruta: number): Promise<void> {
+    const userExists = await this._userRepository.findOne(id_user);
+    if (!userExists) {
+      throw new NotFoundException('Este usuario no existe');
+    }
+    const learningPathExists = await this._learningPathRepository.findOne(id_ruta);
+    if(!learningPathExists) {
+      throw new NotFoundException('Este usuario no existe');
+    }
+
+    // let learningPathslist = userExists.learningPaths.filter(function(it){
+    //   return it !== learningPathExists;
+    // })
+
+    userExists.learningPaths.forEach(function(l, index, object){
+      if(l.id_ruta == learningPathExists.id_ruta){
+        object.splice(index,1);
+      }
+    })  
+
+    const updateUser = await this._userRepository.save(userExists)
+    console.log(userExists.learningPaths)
   }
 
   async addTopic(id_ruta: number, topicId: AddTopicDTO): Promise<ReadLearningPathDTO> {

@@ -11,9 +11,10 @@ import { TopicModule } from './modules/topic/topic.module';
 import { ResourceModule } from './modules/resource/resource.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { GradeModule } from './modules/grade/grade.module';
+import { ProgressModule } from './modules/progress/progress.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, LearningPathModule, TopicModule, ResourceModule, CommentModule, GradeModule],
+  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule, LearningPathModule, TopicModule, ResourceModule, CommentModule, GradeModule, ProgressModule],
 })
 export class AppModule {
   static port: number | string;
