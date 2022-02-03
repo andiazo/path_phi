@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const defaultURL = "http://localhost:5000/api/"
+const defaultURL = "http://3.128.170.111:5000/api/"
 
 export function createComment(setCalificationStatus, comment, id_ruta, id_user){
     axios.post(`${defaultURL}comment/crear-comentario`,{
