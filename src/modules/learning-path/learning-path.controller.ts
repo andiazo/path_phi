@@ -53,10 +53,10 @@ export class LearningPathController {
     return this._learningPathService.enroll(id, iduser);
   }
 
-  @Delete('/leave/:iduser/:idruta')
+  @Delete('/leave/:idruta/:iduser')
   leaveLearningPath(
-    @Param('iduser', ParseIntPipe) iduser: number,
     @Param('idruta', ParseIntPipe) idruta: number, 
+    @Param('iduser', ParseIntPipe) iduser: number,
   ) {
     return this._learningPathService.leave(iduser, idruta)
   }

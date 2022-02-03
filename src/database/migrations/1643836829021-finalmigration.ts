@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class gradeprueba1643764169094 implements MigrationInterface {
-    name = 'gradeprueba1643764169094'
+export class finalmigration1643836829021 implements MigrationInterface {
+    name = 'finalmigration1643836829021'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "recurso" ("id_recurso" SERIAL NOT NULL, "nombre_recurso" character varying(40) NOT NULL, "descripcion_recurso" character varying(150) NOT NULL, "enlace_recurso" character varying(150) NOT NULL, "status" character varying(8) NOT NULL DEFAULT 'ACTIVE', CONSTRAINT "UQ_84e99f10d0c781a4ac8e37b54cd" UNIQUE ("nombre_recurso"), CONSTRAINT "UQ_22e20b21cf59b3d33224ec1ecaa" UNIQUE ("descripcion_recurso"), CONSTRAINT "UQ_0311f799afbd97a2871073835e8" UNIQUE ("enlace_recurso"), CONSTRAINT "PK_512ccf11a581e24d6302261bfa2" PRIMARY KEY ("id_recurso"))`);
@@ -12,6 +12,7 @@ export class gradeprueba1643764169094 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "ruta" ("id_ruta" SERIAL NOT NULL, "nombre_ruta" character varying(40) NOT NULL, "descripcion_ruta" character varying(150) NOT NULL, "dificultad" integer NOT NULL, "cantidad_temas" integer NOT NULL, "cantidad_recursos" integer NOT NULL, "status" character varying(8) NOT NULL DEFAULT 'ACTIVE', CONSTRAINT "UQ_1148dea49b9169bfb24d21502e9" UNIQUE ("nombre_ruta"), CONSTRAINT "UQ_8cb1c5f3085ae72b6222b15ecb7" UNIQUE ("descripcion_ruta"), CONSTRAINT "PK_26a5677b445ca25ad52aa2d8af5" PRIMARY KEY ("id_ruta"))`);
         await queryRunner.query(`CREATE TABLE "comentario" ("id_comment" SERIAL NOT NULL, "content" character varying(150) NOT NULL, "status" character varying(8) NOT NULL DEFAULT 'ACTIVE', "userId" integer, "learningPathIdRuta" integer, CONSTRAINT "PK_a7431b4b074e1daba64e2f5b3c4" PRIMARY KEY ("id_comment"))`);
         await queryRunner.query(`CREATE TABLE "calificacion" ("grade" integer NOT NULL, "status" character varying(8) NOT NULL DEFAULT 'ACTIVE', "userId" integer NOT NULL, "learningPathIdRuta" integer NOT NULL, CONSTRAINT "PK_418f06a1365f28ad81d9b3015b0" PRIMARY KEY ("userId", "learningPathIdRuta"))`);
+        await queryRunner.query(`CREATE TABLE "avance" ("status" character varying(8) NOT NULL DEFAULT 'ACTIVE', "userId" integer NOT NULL, "learningPathIdRuta" integer NOT NULL, "topicIdTopic" integer NOT NULL, CONSTRAINT "PK_9e69c1edb6d9ec996acd5f47ad4" PRIMARY KEY ("userId", "learningPathIdRuta", "topicIdTopic"))`);
         await queryRunner.query(`CREATE TABLE "recurso_tema" ("id_tema" integer NOT NULL, "id_recurso" integer NOT NULL, CONSTRAINT "PK_ea80c38e7c688a95e62fcfe658c" PRIMARY KEY ("id_tema", "id_recurso"))`);
         await queryRunner.query(`CREATE INDEX "IDX_d5b6525966f87b62a61659dd5b" ON "recurso_tema" ("id_tema") `);
         await queryRunner.query(`CREATE INDEX "IDX_86764cf176bc9f63d9a5ece0e3" ON "recurso_tema" ("id_recurso") `);
@@ -32,6 +33,9 @@ export class gradeprueba1643764169094 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "comentario" ADD CONSTRAINT "FK_160115bda380ef7609c6a5404c0" FOREIGN KEY ("learningPathIdRuta") REFERENCES "ruta"("id_ruta") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "calificacion" ADD CONSTRAINT "FK_81d9a14723b88d806fe7bc04f06" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "calificacion" ADD CONSTRAINT "FK_8ae83a4ebb6d4102a0b00537475" FOREIGN KEY ("learningPathIdRuta") REFERENCES "ruta"("id_ruta") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "avance" ADD CONSTRAINT "FK_20dc4c6167ccf3a82175f5b0516" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "avance" ADD CONSTRAINT "FK_5ff40220093177e41950e3807b5" FOREIGN KEY ("learningPathIdRuta") REFERENCES "ruta"("id_ruta") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "avance" ADD CONSTRAINT "FK_6f73d9456c81baa2edc6bc5b04a" FOREIGN KEY ("topicIdTopic") REFERENCES "tema"("id_topic") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "recurso_tema" ADD CONSTRAINT "FK_d5b6525966f87b62a61659dd5b7" FOREIGN KEY ("id_tema") REFERENCES "tema"("id_topic") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "recurso_tema" ADD CONSTRAINT "FK_86764cf176bc9f63d9a5ece0e3b" FOREIGN KEY ("id_recurso") REFERENCES "recurso"("id_recurso") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "roles_users_users" ADD CONSTRAINT "FK_6baa1fce24dde516186c4f0269a" FOREIGN KEY ("rolesId") REFERENCES "roles"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
@@ -55,6 +59,9 @@ export class gradeprueba1643764169094 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "roles_users_users" DROP CONSTRAINT "FK_6baa1fce24dde516186c4f0269a"`);
         await queryRunner.query(`ALTER TABLE "recurso_tema" DROP CONSTRAINT "FK_86764cf176bc9f63d9a5ece0e3b"`);
         await queryRunner.query(`ALTER TABLE "recurso_tema" DROP CONSTRAINT "FK_d5b6525966f87b62a61659dd5b7"`);
+        await queryRunner.query(`ALTER TABLE "avance" DROP CONSTRAINT "FK_6f73d9456c81baa2edc6bc5b04a"`);
+        await queryRunner.query(`ALTER TABLE "avance" DROP CONSTRAINT "FK_5ff40220093177e41950e3807b5"`);
+        await queryRunner.query(`ALTER TABLE "avance" DROP CONSTRAINT "FK_20dc4c6167ccf3a82175f5b0516"`);
         await queryRunner.query(`ALTER TABLE "calificacion" DROP CONSTRAINT "FK_8ae83a4ebb6d4102a0b00537475"`);
         await queryRunner.query(`ALTER TABLE "calificacion" DROP CONSTRAINT "FK_81d9a14723b88d806fe7bc04f06"`);
         await queryRunner.query(`ALTER TABLE "comentario" DROP CONSTRAINT "FK_160115bda380ef7609c6a5404c0"`);
@@ -75,6 +82,7 @@ export class gradeprueba1643764169094 implements MigrationInterface {
         await queryRunner.query(`DROP INDEX "public"."IDX_86764cf176bc9f63d9a5ece0e3"`);
         await queryRunner.query(`DROP INDEX "public"."IDX_d5b6525966f87b62a61659dd5b"`);
         await queryRunner.query(`DROP TABLE "recurso_tema"`);
+        await queryRunner.query(`DROP TABLE "avance"`);
         await queryRunner.query(`DROP TABLE "calificacion"`);
         await queryRunner.query(`DROP TABLE "comentario"`);
         await queryRunner.query(`DROP TABLE "ruta"`);
