@@ -9,5 +9,6 @@ var Configuration;
     Configuration["PASSWORD"] = "PASSWORD";
     Configuration["DATABASE"] = "DATABASE";
     Configuration["JWT_SECRET"] = "JWT_SECRET";
+    Configuration["DATABASE_URL"] = "DATABASE_URL";
 })(Configuration = exports.Configuration || (exports.Configuration = {}));
 //# sourceMappingURL=config.keys.js.map

@@ -12,11 +12,7 @@ exports.databaseProviders = [
         async useFactory(config) {
             return {
                 type: 'postgres',
-                host: config.get(config_keys_1.Configuration.HOST),
-                username: config.get(config_keys_1.Configuration.USERNAME),
-                port: 5444,
-                database: config.get(config_keys_1.Configuration.DATABASE),
-                password: config.get(config_keys_1.Configuration.PASSWORD),
+                url: config.get(config_keys_1.Configuration.DATABASE_URL),
                 entities: [__dirname + '/../**/*.entity{.ts,.js}'],
                 migrations: [__dirname + '/migrations/*{.ts,.js}'],
             };
