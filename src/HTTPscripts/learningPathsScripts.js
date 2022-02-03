@@ -54,3 +54,18 @@ export function leavePath(setPaths,id_path, id_user){// data= {id: path_id}
     }
     )
 }
+export function getPath(id_ruta, setPath, setContentToShow){// data= {id: path_id}
+    axios.get(`${defaultURL}learning-path/consultar/${id_ruta}`)
+    .then(response => {
+        console.log(response.data)
+        setPath(response.data)
+        setContentToShow("specificPath")
+    })
+    .catch(mes =>{
+        if(mes.response && mes.response.data){
+            console.log(mes.response.data.message)
+        }
+        
+    }
+    )
+}
