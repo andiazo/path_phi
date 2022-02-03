@@ -10,11 +10,12 @@ export const databaseProviders = [
     async useFactory(config: ConfigService) {
       return {
         type: 'postgres' as 'postgres',
-        host: config.get(Configuration.HOST),
-        username: config.get(Configuration.USERNAME),
-        port: 5444,
-        database: config.get(Configuration.DATABASE),
-        password: config.get(Configuration.PASSWORD),
+        url: config.get(Configuration.DATABASE_URL),
+        //host: config.get(Configuration.HOST),
+        //username: config.get(Configuration.USERNAME),
+        //port: 5444,
+        //database: config.get(Configuration.DATABASE),
+        //password: config.get(Configuration.PASSWORD),
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/migrations/*{.ts,.js}'],
       } as ConnectionOptions
