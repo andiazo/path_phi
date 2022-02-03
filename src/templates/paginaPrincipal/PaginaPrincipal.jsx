@@ -4,7 +4,7 @@ import Home from '../../organisms/home/Home'
 import Paths from '../../organisms/learningpaths/paths'
 import SpecificPath from '../../organisms/specificPath/specificPath'
 import Team from '../../organisms/team/team'
-import {leavePath, getUserPaths} from '../../HTTPscripts/learningPathsScripts.js'
+import {leavePath, getUserPaths, getPath} from '../../HTTPscripts/learningPathsScripts.js'
 import "./pagPrincipal.css"
 
 const PaginaPrincipal = ({handleClick, username, setUsername, userID}) => {
@@ -23,9 +23,8 @@ const PaginaPrincipal = ({handleClick, username, setUsername, userID}) => {
         setContentToShow(contentString)
     }
     const handleLoadSpecificPath = (pathObject) => () => {
-      setPathObject(pathObject)
-      console.log(pathObject)
-      setContentToShow("specificPath")
+      getPath(pathObject.id_ruta,setPathObject, setContentToShow)
+
   }
   
   const handleLeavePath = () => {

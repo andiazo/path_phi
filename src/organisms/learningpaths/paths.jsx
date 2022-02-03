@@ -13,39 +13,6 @@ const Paths = ({handleLoadPath, myPaths, setMyPaths, userID}) => {
     const handleChangeElection = (elect) => () =>{
         setElection(elect)
     }
-    /*const allPaths = [
-        {
-            title: "Java",
-            description: "Ruta enfocada en los principios fundamentales y funcionales de Java",
-            difficulty: 5,
-            themes: 10
-        },
-        {
-            title: "JavaScript",
-            description: "Aquí aprenderás a usar JavaScript en la web, entendiendo gran parte de su poder",
-            difficulty: 2,
-            themes: 6
-        },
-        {
-            title: "JavaScript",
-            description: "Aquí aprenderás a usar JavaScript en la web, entendiendo gran parte de su poder",
-            difficulty: 2,
-            themes: 6
-        },
-        {
-            title: "JavaScript",
-            description: "Aquí aprenderás a usar JavaScript en la web, entendiendo gran parte de su poder",
-            difficulty: 2,
-            themes: 6
-        },
-        {
-            title: "JavaScript",
-            description: "Aquí aprenderás a usar JavaScript en la web, entendiendo gran parte de su poder",
-            difficulty: 2,
-            themes: 6
-        },
-    ]
-    */
     React.useEffect(()=>{
         if(firsTime){
             getAllPaths(setAllPaths)

@@ -15,8 +15,10 @@ export function signUp(setIsRegistered, setAlertMessage, userToRegister){
         }
         
     }
+    
     )
 }
+
 
 export function signIn(setUserData, setAuthorized, setAlertMessage, userToRegister){
     axios.post(`${defaultURL}auth/signin`, userToRegister)

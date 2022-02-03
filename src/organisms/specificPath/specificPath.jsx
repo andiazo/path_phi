@@ -31,7 +31,8 @@ const SpecificPath = ({pathObject, handleLeavePath, userID}) => {
               <Book/>
             
             <div className = "specific-path__content-container">
-              <Path/>
+              <Path data = {pathObject.topics}/>
+              {console.log(pathObject)}
             </div>
             <PathForm isFormRealized = {isFormRealized} handleSendForm = {handleSendForm}/>
             <Button handle={handleLeavePath} color="#A79798" borderColor = "#A79798" text = "Abandonar" />
