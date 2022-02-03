@@ -3,8 +3,9 @@ import React from 'react'
 import PathCard from '../../molecules/learningPathCard/pathCard';
 import imgTitle from '../../img/paths/LearningPathsTittle.png'
 import Text from '../../atoms/text';
-import {getAllPaths} from '../../HTTPscripts/learningPathsScripts.js'
-const Paths = ({handleLoadPath, myPaths, setMyPaths}) => {
+import {enrollInPath,getAllPaths, getUserPaths} from '../../HTTPscripts/learningPathsScripts.js'
+
+const Paths = ({handleLoadPath, myPaths, setMyPaths, userID}) => {
     
     const [election, setElection] = React.useState("whole")
     const [firsTime, setFirsTime] = React.useState(true)
@@ -48,6 +49,8 @@ const Paths = ({handleLoadPath, myPaths, setMyPaths}) => {
     React.useEffect(()=>{
         if(firsTime){
             getAllPaths(setAllPaths)
+            getUserPaths(userID, setMyPaths)
+
             setFirsTime(false)
         }
     }, [firsTime])
@@ -72,6 +75,7 @@ const Paths = ({handleLoadPath, myPaths, setMyPaths}) => {
         }
     }, [election])
     const handleEnroll = (newPath) => () => {
+        enrollInPath(newPath.id_ruta,userID)
         if(newPath){
             let existnewPath = false
             myPaths.map((path) =>{
@@ -84,6 +88,7 @@ const Paths = ({handleLoadPath, myPaths, setMyPaths}) => {
         else{
             //alert("No se pudo inscribir")
         }
+        
     }
     //Puede poner JavaScript *puro* 
       return (

@@ -18,10 +18,11 @@ export function signUp(setIsRegistered, setAlertMessage, userToRegister){
     )
 }
 
-export function signIn(setAuthorized, setAlertMessage, userToRegister){
+export function signIn(setUserData, setAuthorized, setAlertMessage, userToRegister){
     axios.post(`${defaultURL}auth/signin`, userToRegister)
     .then(response => {
         console.log(response.data)
+        setUserData(response.data[1])
         setAuthorized(true)
     })
     .catch(mes =>{

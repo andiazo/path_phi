@@ -5,7 +5,7 @@ import Input from "../../atoms/input";
 import Button from "../../atoms/button";
 import {signIn} from '../../HTTPscripts/authScripts'
 import backgroudImgURL from "../../img/LoginBackground.jpeg"
-const Login = ({handleClick, setUsername}) => {
+const Login = ({handleClick, setUsername, setUserID}) => {
 
 
 //Puede poner JavaScript *puro* 
@@ -50,7 +50,7 @@ const reHandleClickLogin = () =>{
       username: username,
       password: password
     }
-    signIn(setIsAuthorized, setAlertText, data)
+    signIn(setUserID, setIsAuthorized, setAlertText, data)
   }
   else{
     setAlertText("Por favor llenar los campos con datos válidos")

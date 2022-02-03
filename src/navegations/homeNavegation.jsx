@@ -7,15 +7,20 @@ const HomeNavegation = () => {
 //Puede poner JavaScript *puro* 
 const [state, setState] = React.useState("home")
 const [username, setUsername] = React.useState("")
+const [userID, setUserID] = React.useState()
+
+React.useEffect(()=>{
+  console.log(userID)
+},[userID])
 const handleClick = (string) =>{
     setState(string)
 }
 
   return (
     <>
-        {state == "login"&&<Login handleClick={handleClick} setUsername={setUsername}/>}
+        {state == "login"&&<Login handleClick={handleClick} setUsername={setUsername} setUserID = {setUserID}/>}
         {state == "register" && <Register handleClick={handleClick}/>}
-        {state == "home" && <PaginaPrincipal handleClick={handleClick} username={username} setUsername= {setUsername}/>}
+        {state == "home" && <PaginaPrincipal handleClick={handleClick} username={username} setUsername= {setUsername} userID={userID}/>}
 
     </>
   );
