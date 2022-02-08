@@ -50,7 +50,9 @@ const Team = ({}) => {
                     <img src={BullaImg} alt="" />
                     <Text textDecoration={"underline"} color = "#7B7E9C" content = "Diego Bulla" fontSize="1.4vw" fontWeight="bold"/>
                     <Text color = "#7B7E9C" content = "Estudiante de Ingeniería en Sistemas" fontSize="1vw" fontWeight="normal"/>
-                    
+                    <Text color = "#7B7E9C" content = "Hobbies: Música, Blind Tennis, Leer" fontSize="1vw" fontWeight="normal"/>
+                    <Text color = "#7B7E9C" content = "Intereses: Ingeniería Biomédica, Inteligencia Artificial" fontSize="1vw" fontWeight="normal"/>
+                    <Text color = "#7B7E9C" content = "dibullap@unal.edu.co" fontSize="1vw" fontWeight="normal"/>
                     
                 </div>
                 <div className = "team__card-container">

@@ -2,7 +2,7 @@ import React from 'react'
 import './book.css'
 import Text from '../../atoms/text'
 import Input from '../../atoms/input'
-const Book = ({}) =>{
+const Book = ({progress}) =>{
     let data = {
         objective: "",
         inscriptionDate: "01/01/2022",
@@ -42,7 +42,7 @@ const Book = ({}) =>{
         <div className = "book__main-container">
             <div className = "book__left-container">
                 <div className='container--incolumn'>
-                    <Text fontSize = "2vw" fontWeight= "bold" content = "Día 1"/>
+                    <Text fontSize = "2vw" fontWeight= "bold" content = "Capítulo 1"/>
                     <Text content = "Donde todo empieza"/>
                 </div>
                 <div className='container--incolumn book__objective-container'>
@@ -57,7 +57,6 @@ const Book = ({}) =>{
                         <Text fontSize = "1.1vw" handle = {editObjectiveHolder} color = "rgba(123, 102, 116, 0.7)" content = {objective}/>
                     }
                 </div>
-                <Text fontSize = "1.1vw" content = {data.inscriptionDate}/>
             </div>
             
             <div className = "book__shine-circle"></div>
@@ -65,19 +64,18 @@ const Book = ({}) =>{
             <div className = "book__right-container">
                 
                 <div className='container--incolumn'>
-                    <Text fontSize = "2vw" fontWeight= "bold" content = {`Día ${currentDay}`}/>    
+                    <Text fontSize = "2vw" fontWeight= "bold" content = {`Capítulo ${progress}`}/>    
                     <Text content = "Donde puedo avanzar"/>
                 </div>
                 <div className='container--incolumn book__percentage-container'>
-                    <Text fontSize = "2.3vw" fontWeight= "bold" content = {data.completionPercentage +"%"}/>    
+                    <Text fontSize = "2.3vw" fontWeight= "bold" content = {progress+"%"}/>    
                     <div className = "book__percentage-total">
-                        <div style = {{width: "50%"}} className = "book__percentage-completion"></div>
+                        <div style = {{width: `${progress}%`}} className = "book__percentage-completion"></div>
                     </div>
                 </div>
                 
                 
-                
-                <Text fontSize = "1.1vw" content = {currentDate}/>
+                <div></div>
             </div>
         </div>
     )    

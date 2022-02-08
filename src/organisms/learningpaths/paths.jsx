@@ -77,13 +77,13 @@ const Paths = ({handleLoadPath, myPaths, setMyPaths, userID}) => {
             {election === "whole"?
                 <>
                 {allPaths.length>0? allPaths.map((path) =>
-                    <PathCard handle = {handleEnroll} type={election} pathObject={path}/>
+                    <PathCard userID={userID} handle = {handleEnroll} type={election} pathObject={path}/>
                 ): <Text content = 'No se pudo cargar las rutas de aprendizaje' fontSize="30px" color= "#C19D72" fontWeight="500"/>}
                 </>
                 :
                 <>
                 {myPaths? myPaths.map((path) =>
-                    <PathCard handle = {handleLoadPath} type={election} pathObject={path}/>
+                    <PathCard userID={userID} handle = {handleLoadPath} type={election} pathObject={path}/>
                 ): <Text content = 'No se pudo cargar las rutas de aprendizaje' fontSize="30px" color= "#523E53" fontWeight="500"/>}
                 </>
             }

@@ -69,3 +69,37 @@ export function getPath(id_ruta, setPath, setContentToShow){// data= {id: path_i
     }
     )
 }
+export function getProgress(id_ruta, id_user, setProgress){// data= {id: path_id}
+    axios.get(`${defaultURL}progress/${id_user}/${id_ruta}`)
+    .then(response => {
+        console.log(Math.floor(response.data))
+        setProgress(Math.floor(response.data))
+        
+    })
+    .catch(mes =>{
+        if(mes.response && mes.response.data){
+            console.log(mes.response.data.message)
+        }
+        
+    }
+    )
+}
+export function progress(id_ruta, id_topic, id_user, setFirstTime){
+    axios.post(`${defaultURL}progress/avanzar`,{
+        "id_user": id_user,
+        "id_ruta": id_ruta,
+        "id_topic": id_topic
+    })
+    .then(response => {
+        console.log(id_ruta +" "+ id_topic +" "+ id_user) 
+        setFirstTime(true)
+    })
+    .catch(mes =>{
+        setFirstTime(false)
+        if(mes.response && mes.response.data){
+            console.log(mes.response.data.message)
+        }
+        
+    }
+    )
+}

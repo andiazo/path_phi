@@ -51,7 +51,7 @@ const PaginaPrincipal = ({handleClick, username, setUsername, userID}) => {
         <>
             <div className="pag-main-container">
                 <Header handleClickNavigation = {handleChange} setUsername ={setUsername} username = {username} handleClickRegister= {reHandleClickRegister} handleClickLogin={reHandleClickLogin} navegationTree={navegationTree}/>
-                 {contentToShow === "specificPath" && <SpecificPath userID={userID} handleLeavePath = {handleLeavePath} pathObject={pathObject} />}
+                 {contentToShow === "specificPath" && <SpecificPath userID={userID} handleLeavePath = {handleLeavePath} pathObject={pathObject} setContentToShow={setContentToShow}/>}
                  {(contentToShow === "home") && <Home/>}
                  {contentToShow === "paths" && <Paths userID={userID} myPaths = {myPaths} setMyPaths ={setMyPaths} handleLoadPath = {handleLoadSpecificPath}/>}
                  {contentToShow === "team" && <Team/>}

@@ -18,25 +18,44 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     top:calc(100%);
     left: -1px;
     transform: rotateZ(-90Deg);
     cursor: auto;
+
+
 }
 
 .path__next-cubik{
     cursor: pointer;
     box-sizing:content-box;
     border: 1px solid #c4c4c4;
-    
     position: absolute;
     margin: auto;
     left: 0;
     right: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.path__next-cubik-arrow{
+    position: absolute;
+    color: #C4C4C4;
+    font-size: 2vw;
+    transform: rotateZ(90Deg);
+}
+.path__previous-cubik-arrow{
+    position: absolute;
+    color: #C4C4C4;
+
+    margin: auto;
+    font-size: 2vw;
 }
 .path__main-container{
     position: relative;
-    
     
 }
 .path__paths-container{

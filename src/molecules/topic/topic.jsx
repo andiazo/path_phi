@@ -46,7 +46,7 @@ const Topic = ({setTopicCompleted, topicCompleted, topicData, topicNumber}) =>{
                 { 
                     topicData.resources.map((resource,index) =>
                     <div className = "topic__resource">
-                        <Text cursor = {"pointer"} handle = {() => window.open(`${resource.enlace_recurso}`)} content={`${index+1}. ${resource.nombre_recurso} ->`}/>
+                        <Text textDecoration={"underline"} cursor = {"pointer"} handle = {() => window.open(`${resource.enlace_recurso}`)} content={`${index+1}. ${resource.nombre_recurso} ->`}/>
                         <label><Input className = "topic__checkbox"type ="checkbox" onChange={(event) => changeHandler(index, event)}/></label>
                     </div>
                     

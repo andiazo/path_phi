@@ -3,7 +3,9 @@ import React from 'react'
 import Text from "../../atoms/text.jsx"
 import Image from "../../img/logo-pathphi.png"
 import Topic from '../../molecules/topic/topic'
-const Path = ({data}) => {
+import Input from "../../atoms/input"
+import {getProgress, progress} from '../../HTTPscripts/learningPathsScripts'
+const Path = ({data, userID, pathID, setProgress}) => {
     const [topicCompleted, setTopicCompleted] = React.useState(false)
     const scala  = 50
     const [topics, setTopics] = React.useState([1,1,2,3,5,8]) // 1 2 3 4 5 6 = index - topicRange + 1 
@@ -103,8 +105,21 @@ const Path = ({data}) => {
   ],
   topicNumber : 6
 }])
+    
     const [topicRange, setTopicRange] = React.useState(1) //cantidad de paths renderizados
     const [nextElemSize, setNextElemSize] = React.useState(0)
+    const [firstTime, setFirstTime] = React.useState(true)
+    React.useEffect(()=>{
+      if(firstTime){
+        getProgress(pathID, userID, setProgress)
+        setFirstTime(false)
+      }
+    },[firstTime])
+    React.useEffect(()=>{
+      if(topicCompleted){
+        progress(pathID, data[topicRange-1].id_topic, userID, setFirstTime)
+      }
+    },[topicCompleted])
     const topicData = {
       title: "Título del tema",
       description: "Breve descripción, 300 letras máximo orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu orem ipsu orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu  orem ipsu",
@@ -129,7 +144,6 @@ const Path = ({data}) => {
           setTopicRange(topicRange-1)
         }
       const handleClickNext = () => {
-          setTopicCompleted(false)
           setTopicCompleted(false)
           //setTopics((topics)=> topics.unshift(topics.length+1)    
           setTopics(topics => [...topics])
@@ -159,7 +173,7 @@ const Path = ({data}) => {
     const divDrawer = (dataArray, index)=> {
       if(index == topics.length){
         return <div onClick={topicRange<data.length && topicCompleted? handleClickNext:""} className="path__next-cubik" style={{height:"50px", width:nextElemSize}}>
-          {divDrawer(dataArray, index-1)}
+          {<div className="path__next-cubik-arrow">{"<-"}</div>}{divDrawer(dataArray, index-1)}
         </div>
       }
       return <div
@@ -167,7 +181,10 @@ const Path = ({data}) => {
        style={{cursor: index == dataArray.length-2?"pointer":"auto",width:dataArray[index]*scala-1, height:dataArray[index]*scala-1}} 
        className={"path__cubik"}>
          <div className="path__cubik-curve"></div>
-         {index == dataArray.length-1? <Topic topicNumber = {Math.abs(topics.length - index - topicRange)} setTopicCompleted={setTopicCompleted} topicCompleted={topicCompleted} topicData={data[Math.abs(topics.length - index - topicRange)]}/>: /*data[Math.abs(topics.length - index - topicRange)].topicNumber*/""}{index != topics.length-topicRange && index>= 1?divDrawer(dataArray, index-1):""}
+         {index == dataArray.length-1? <Topic topicNumber = {Math.abs(topics.length - index - topicRange)} setTopicCompleted={setTopicCompleted} topicCompleted={topicCompleted} topicData={data[Math.abs(topics.length - index - topicRange)]}/>
+         :index == dataArray.length-2?<div className="path__previous-cubik-arrow">{"<-"}</div>:""
+          /*data[Math.abs(topics.length - index - topicRange)].topicNumber*/
+          }{index != topics.length-topicRange && index>= 1?divDrawer(dataArray, index-1):""}
        </div>
     }
     //Puede poner JavaScript *puro* 
