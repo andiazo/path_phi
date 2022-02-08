@@ -15,6 +15,7 @@ const SpecificPath = ({pathObject, handleLeavePath, userID, setContentToShow}) =
     const [isFormRealized, setIsFormRealized] = React.useState(false)
     const [progress, setProgress] = React.useState(0)
     const [activation, setActivation] = React.useState(false)
+    
     const handleSendForm = () =>{
       const comment = document.querySelector('input[name="reaction"]:checked').value;
       const calification = document.getElementById("path-form__opinion-text").value
@@ -39,7 +40,7 @@ const SpecificPath = ({pathObject, handleLeavePath, userID, setContentToShow}) =
               </div>
               <Book progress= {progress}/>
             <div className = "specific-path__content-container">
-              <Path data = {pathObject.topics} userID={userID} pathID = {pathObject.id_ruta} setProgress={setProgress}/>
+              <Path Initprogress={progress} data = {pathObject.topics} userID={userID} pathID = {pathObject.id_ruta} setProgress={setProgress}/>
               { progress>= 100 && !activation?
               <><div className="path__modal-bg"></div>
               <div className="path__modal-main-container">

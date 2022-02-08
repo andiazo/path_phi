@@ -25,7 +25,6 @@ const PathCard = ({type, pathObject, handle, userID}) =>{
             <div className ={`path-card__content path-card__content--${stylingObject.classModifier}`}>
                 <div className ="path-card__image"></div>
                 <div className ="path-card__description">
-                    {console.log(pathObject)}
                     <Text textDecoration={progress === 100?"line-through":""} content = {pathObject.nombre_ruta}  fontSize="1.5vw" color= {stylingObject.titleColor} fontWeight="bold"/>
                     <Text content = {pathObject.descripcion_ruta} fontSize="1vw" color= {stylingObject.descriptionColor} fontWeight="bold"/>
                     <Text content = {`Dificultad ${pathObject.dificultad} | ${pathObject.cantidad_temas} temas`} fontSize="1.1vw" color= {stylingObject.descriptionColor} fontWeight="bold"/>

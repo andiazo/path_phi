@@ -49,7 +49,7 @@ const Book = ({progress}) =>{
                     <Text fontSize = "1.2vw" fontWeight= "bold" content = "Mi objetivo:"/>
                     {settingObjective? 
                         <>
-                            <textarea autoFocus id ="book__objective-text" onBlur = {focusOutObjectiveHolder} placeholder="!Escribe tu objetivo!"  maxlength = {maxNumberOfWords} onChange={(e) => writeObjectiveHolder(e)}>{objective}</textarea>
+                            <textarea autoFocus id ="book__objective-text" onBlur = {focusOutObjectiveHolder} placeholder="!Escribe tu objetivo!"  maxLength = {maxNumberOfWords} onChange={(e) => writeObjectiveHolder(e)}>{objective}</textarea>
                             <Text fontSize = "1vw" color = "rgba(123, 102, 116, 0.7)" content = {numberOfWords+"/"+maxNumberOfWords}/>
                         </> 
                     :

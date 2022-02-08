@@ -9,7 +9,7 @@
     position: relative;
     z-index: 5;
     width: 90%;
-    height: 20vh;
+    height: 25vh;
     display: flex;
     flex-direction: row;
 }
@@ -22,6 +22,7 @@
 .path-card__image{
     background-image: url("../../img/deffaultImage.png");
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     width: 40%;
     height: 100%;
@@ -58,7 +59,7 @@
 .path-card__button-click{
     cursor: pointer;
     width: 2vw;
-    height: 3vw;
+    height: 5vw;
     
 }
 .path-card__button-container--whole{

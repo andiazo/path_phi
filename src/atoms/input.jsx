@@ -15,9 +15,9 @@ const Input = ({className, id, type, width, height, transformStyle, transform, b
             <>
             {
                 (type == "number")?
-                <input maxlength = {maxlength} min = "6" max="100" style={constStyle} id={id} type={type} onChange={onChange}/>
+                <input maxLength = {maxlength} min = "6" max="100" style={constStyle} id={id} type={type} onChange={onChange}/>
                 :
-                <input className = {className} maxlength = {maxlength} style={constStyle} id={id} type={type} onChange={onChange}/>
+                <input className = {className} maxLength = {maxlength} style={constStyle} id={id} type={type} onChange={onChange}/>
             }
             </>
         );

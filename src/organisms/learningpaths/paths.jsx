@@ -76,8 +76,8 @@ const Paths = ({handleLoadPath, myPaths, setMyPaths, userID}) => {
             <div className = "paths-container">
             {election === "whole"?
                 <>
-                {allPaths.length>0? allPaths.map((path) =>
-                    <PathCard userID={userID} handle = {handleEnroll} type={election} pathObject={path}/>
+                {allPaths.length>0? allPaths.map((path,index) =>
+                    <PathCard key ={index} userID={userID} handle = {handleEnroll} type={election} pathObject={path}/>
                 ): <Text content = 'No se pudo cargar las rutas de aprendizaje' fontSize="30px" color= "#C19D72" fontWeight="500"/>}
                 </>
                 :

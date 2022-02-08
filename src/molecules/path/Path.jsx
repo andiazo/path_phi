@@ -5,7 +5,7 @@ import Image from "../../img/logo-pathphi.png"
 import Topic from '../../molecules/topic/topic'
 import Input from "../../atoms/input"
 import {getProgress, progress} from '../../HTTPscripts/learningPathsScripts'
-const Path = ({data, userID, pathID, setProgress}) => {
+const Path = ({data, userID, pathID, setProgress, Initprogress}) => {
     const [topicCompleted, setTopicCompleted] = React.useState(false)
     const scala  = 50
     const [topics, setTopics] = React.useState([1,1,2,3,5,8]) // 1 2 3 4 5 6 = index - topicRange + 1 
@@ -111,10 +111,17 @@ const Path = ({data, userID, pathID, setProgress}) => {
     const [firstTime, setFirstTime] = React.useState(true)
     React.useEffect(()=>{
       if(firstTime){
-        getProgress(pathID, userID, setProgress)
+        getProgress(pathID, userID, setProgress, setTopicRange)
         setFirstTime(false)
+        console.log(data)
       }
     },[firstTime])
+    React.useEffect(()=>{
+      setTopicRange(Math.floor(data.length*Initprogress/100))
+      console.log(data.length)
+      console.log(Initprogress)
+      
+    },[Initprogress])
     React.useEffect(()=>{
       if(topicCompleted){
         progress(pathID, data[topicRange-1].id_topic, userID, setFirstTime)
@@ -172,7 +179,7 @@ const Path = ({data, userID, pathID, setProgress}) => {
 
     const divDrawer = (dataArray, index)=> {
       if(index == topics.length){
-        return <div onClick={topicRange<data.length && topicCompleted? handleClickNext:""} className="path__next-cubik" style={{height:"50px", width:nextElemSize}}>
+        return <div onClick={topicRange<data.length && topicCompleted? handleClickNext:undefined} className="path__next-cubik" style={{height:"50px", width:nextElemSize}}>
           {<div className="path__next-cubik-arrow">{"<-"}</div>}{divDrawer(dataArray, index-1)}
         </div>
       }

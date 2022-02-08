@@ -30,7 +30,7 @@ const PathForm = ({isFormRealized, handleSendForm}) =>{
                     <div className = "container--inrow" style ={{width: "100%",gap: "3vw"}}>
                         <div className = "container--incolumn path-form__reaction" >
                             <label>
-                                <input type="radio" name="reaction" value={1} />
+                                <input type="radio" name="reaction" value={1} checked="checked"/>
                                 <img src={fullFilledImage}/>
                             </label>
                             <Text id = "path-form__fulfilled" fontSize = "1.2vw" color = "#276271" content = "Realizado(a)"/>   
