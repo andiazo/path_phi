@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const defaultURL = "http://3.15.144.53:5000/api/"
+const defaultURL = "http://3.145.19.245:5000/api/"
 
 export function signUp(setIsRegistered, setAlertMessage, userToRegister){
     axios.post(`${defaultURL}auth/signup`, userToRegister)

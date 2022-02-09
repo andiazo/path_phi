@@ -8,14 +8,25 @@ import Path from '../../molecules/path/Path'
 import yesImg from '../../img/modal/yes.png'
 import PathForm from '../../molecules/pathForm/pathForm';
 import {createCalification, createComment} from '../../HTTPscripts/calificationScripts.js'
+import {getProgressInit} from '../../HTTPscripts/learningPathsScripts'
 
 const SpecificPath = ({pathObject, handleLeavePath, userID, setContentToShow}) => {
     //Puede poner JavaScript *puro*
-    const [firstTime, setFirstTime] = React.useState(true)
     const [isFormRealized, setIsFormRealized] = React.useState(false)
     const [progress, setProgress] = React.useState(0)
     const [activation, setActivation] = React.useState(false)
-    
+    const [firstTime, setFirstTime] = React.useState(true)
+    const [activationPath, setActivationPath] = React.useState(false)
+
+    React.useEffect(()=>{
+      if(firstTime){
+        getProgressInit(pathObject.id_ruta, userID, setProgress, setActivationPath)
+        setFirstTime(false)
+      }
+    },[firstTime])
+    React.useEffect(()=>{
+      console.log("Progreso: ... " + progress)
+    },[progress])
     const handleSendForm = () =>{
       const comment = document.querySelector('input[name="reaction"]:checked').value;
       const calification = document.getElementById("path-form__opinion-text").value
@@ -40,7 +51,7 @@ const SpecificPath = ({pathObject, handleLeavePath, userID, setContentToShow}) =
               </div>
               <Book progress= {progress}/>
             <div className = "specific-path__content-container">
-              <Path Initprogress={progress} data = {pathObject.topics} userID={userID} pathID = {pathObject.id_ruta} setProgress={setProgress}/>
+              {activationPath && <Path Initprogress={progress} data = {pathObject.topics} userID={userID} pathID = {pathObject.id_ruta} setProgress={setProgress}/>}
               { progress>= 100 && !activation?
               <><div className="path__modal-bg"></div>
               <div className="path__modal-main-container">

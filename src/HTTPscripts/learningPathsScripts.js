@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const defaultURL = "http://3.15.144.53:5000/api/"
+const defaultURL = "http://3.145.19.245:5000/api/"
 
 export function getAllPaths(setPaths){
     axios.get(`${defaultURL}learning-path/`)
@@ -72,8 +72,22 @@ export function getPath(id_ruta, setPath, setContentToShow){// data= {id: path_i
 export function getProgress(id_ruta, id_user, setProgress){// data= {id: path_id}
     axios.get(`${defaultURL}progress/${id_user}/${id_ruta}`)
     .then(response => {
-        console.log(Math.floor(response.data))
         setProgress(Math.floor(response.data))
+        
+    })
+    .catch(mes =>{
+        if(mes.response && mes.response.data){
+            console.log(mes.response.data.message)
+        }
+        
+    }
+    )
+}
+export function getProgressInit(id_ruta, id_user, setProgress, setActivation){// data= {id: path_id}
+    axios.get(`${defaultURL}progress/${id_user}/${id_ruta}`)
+    .then(response => {
+        setProgress(Math.floor(response.data))
+        setActivation(true)
         
     })
     .catch(mes =>{

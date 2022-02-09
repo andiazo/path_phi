@@ -109,22 +109,25 @@ const Path = ({data, userID, pathID, setProgress, Initprogress}) => {
     const [topicRange, setTopicRange] = React.useState(1) //cantidad de paths renderizados
     const [nextElemSize, setNextElemSize] = React.useState(0)
     const [firstTime, setFirstTime] = React.useState(true)
+    const [updateProgress, setUpdateProgress] = React.useState(true)
+    React.useEffect(()=>{
+      if(updateProgress){
+        getProgress(pathID, userID, setProgress)
+        setUpdateProgress(false)
+      }
+    },[updateProgress])
     React.useEffect(()=>{
       if(firstTime){
-        getProgress(pathID, userID, setProgress, setTopicRange)
+        setTopicRange(Math.floor(data.length*Initprogress/100))
+        console.log(data.length)
+        console.log(Initprogress)
         setFirstTime(false)
-        console.log(data)
       }
+      
     },[firstTime])
     React.useEffect(()=>{
-      setTopicRange(Math.floor(data.length*Initprogress/100))
-      console.log(data.length)
-      console.log(Initprogress)
-      
-    },[Initprogress])
-    React.useEffect(()=>{
       if(topicCompleted){
-        progress(pathID, data[topicRange-1].id_topic, userID, setFirstTime)
+        progress(pathID, data[topicRange-1].id_topic, userID, setUpdateProgress)
       }
     },[topicCompleted])
     const topicData = {
@@ -166,15 +169,18 @@ const Path = ({data, userID, pathID, setProgress, Initprogress}) => {
         return sum;
       }
       React.useEffect(() =>{
-        console.log("topicRange: "+topicRange)
+        
         console.log(topics)
         if(topicRange == 1){
           setNextElemSize(getSumArray(topics.slice(topics.length-1,topics.length))*scala-1)
         }
+        else if(topicRange == 0){
+          setTopicRange(1)
+        }
         else{
           setNextElemSize(getSumArray(topics.slice(topics.length-2,topics.length))*scala-1)
         }
-        
+        console.log("topicRange: "+topicRange)
       },[topicRange])
 
     const divDrawer = (dataArray, index)=> {
